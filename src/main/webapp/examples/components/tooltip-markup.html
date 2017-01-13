@@ -1,0 +1,9 @@
+<div ng-controller="DemoTooltipCtrl">
+    <button class="btn btn-sm btn-info" name="tooltip1" sharktooltip tooltip-content="{{content}}<br/>18898033520">tooltip1</button>
+</div>
+<script type="text/javascript">
+    angular.module('demoApp')
+        .controller('DemoTooltipCtrl', ['$scope', function($scope) {
+            $scope.content = '我是悬浮提示';
+        }]);
+</script>

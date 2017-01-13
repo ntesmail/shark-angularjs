@@ -1,0 +1,20 @@
+<div ng-controller="DemoSelecterCtrl">
+    下拉框的值：{{selecter1Value}}
+    <sharkselecter name="selecter1" ng-model="selecter1Value" selecter-data="data" onselect="onselect"></sharkselecter>
+</div>
+<script type="text/javascript">
+    angular.module('demoApp')
+        .controller('DemoSelecterCtrl', ['$scope','$timeout', function($scope,$timeout) {
+            $scope.data = [{ value: '', name: '请选择' }, { value: 1001, name: '一年级' }, { value: 1002, name: '二年级' }];
+            $scope.selecter1Value = 1002;
+            // $scope.$watch('selecter1Value',function(){
+            //     console.log($scope.selecter1Value);
+            // });
+            $scope.onselect = function(){
+                console.log($scope.selecter1Value);
+            };
+            $timeout(function(){
+                $scope.selecter1Value = 1001;
+            },5000);
+        }]);
+</script>

@@ -1,0 +1,52 @@
+<div ng-controller="DemoTabsCtrl">
+    <sharktabs name="tabs1" event="click" active="curActive" ontabswitch="tabSwitch">
+        <ul class="nav nav-tabs">
+            <li>
+                <a href="javascript:void(0);">Home</a>
+            </li>
+            <li>
+                <a href="javascript:void(0);">Profile</a>
+            </li>
+            <li>
+                <a href="javascript:void(0);">Messages</a>
+            </li>
+            <li>
+                <a href="javascript:void(0);">Settings</a>
+            </li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane">
+                {{tab1}}
+            </div>
+            <div class="tab-pane" tabs-content-url="/shark-angular/examples/templates/tabs-2.html">
+                
+            </div>
+            <div class="tab-pane">
+                xxx333
+            </div>
+            <div class="tab-pane">
+                xxx444
+            </div>
+        </div>
+    </sharktabs>
+</div>
+<script type="text/javascript">
+angular.module('demoApp')
+    .controller('DemoTabsCtrl', ['$scope', '$timeout', 'sharkmodal', function($scope, $timeout, sharkmodal) {
+        $scope.curActive = 0;
+        $scope.tabSwitch = function(index) {
+            console.log('tab点击：' + index);
+        };
+        $scope.$watch('curActive',function(){
+            console.log('curActive改变为：' + $scope.curActive);
+        });
+        $timeout(function(){
+            $scope.curActive = 1;
+        },1000);
+        $scope.tab1 = "xxx111";
+        $scope.btnText = "打开弹窗";
+        $scope.openDialog = function(size) {
+            alert('点击了我');
+        };
+    }]);
+</script>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<%
+    function includeMD(file) {
+        var text = include(file);
+        return converter.makeHtml(text);
+    }
+    function includeMDJs(file) {
+        var text = include(file);
+        return converter.makeHtml('```javascript\n' + text + '\n```');
+    }
+    
+%>
+<head>
+	<meta charset="UTF-8">
+    <title>shark-angular组件库_shark组件平台</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="Keywords" content="shark,html,css,jquery,angular,angular2,bootstrap,组件库,前端组件库">
+	<meta name="description" content="shark组件平台，是包含了css框架、jquery、angular、angular2、bootstrap组件库的前端组件平台。">
+    <!-- build:css /style/css/example.css -->
+    <link rel="stylesheet" href="/style/css/examples/example.css">
+    <!-- endbuild -->
+	<style type="text/css">
+    @font-face {
+        font-family: 'FontAwesome';
+        src: url('/shark-angular/font/FontAwesome.eot?lyuoqs');
+        src: url('/shark-angular/font/FontAwesome.eot?lyuoqs#iefix') format('embedded-opentype'), url('/shark-angular/font/FontAwesome.ttf?lyuoqs') format('truetype'), url('/shark-angular/font/FontAwesome.woff?lyuoqs') format('woff'), url('/shark-angular/font/FontAwesome.svg?lyuoqs#FontAwesome') format('svg');
+        font-weight: normal;
+        font-style: normal;
+    }
+    </style>
+    <!-- build:js(src/main/webapp) /js/lib/jquery.js -->
+	<script type="text/javascript" src="/js/lib/jquery.js"></script>
+    <!-- endbuild -->
+
+    <!-- build:js(src/main/webapp) /js/lib/angular.js -->
+    <script type="text/javascript" src="/js/lib/angular.js"></script>
+    <!-- endbuild -->
+
+	<script type="text/javascript" src="/js/shark-angular.ui.js"></script>
+	
+	<script type="text/javascript">
+		angular.module('demoApp', ['shark-angular.ui'])
+        .config(['sharkconfigProvider', function(sharkconfigProvider) {
+            sharkconfigProvider.setConfig({
+                sharkautocomplete: {
+                	debounceTime: 300,
+                    autocomplete: false,
+                    displayKey: 'name'
+                },
+                sharkfileupload: {
+                    accept: '',
+                    autoupload: false,
+                    dragable: false
+                },
+                sharkmodal: {
+                    size: '',
+                    backdrop: ''
+                },
+                sharkpager: {
+                    hl: {
+                        firstpage: '首页',
+                        prevpage: '上一页',
+                        nextpage: '下一页',
+                        lastpage: '尾页',
+                        gopage: '跳转'
+                    },
+                    segmentSize: 5,
+                    startFrom: 1,
+                    gopage: false
+                },
+                sharkpopover: {
+                    close: 'bodyclick',
+                    direction: 'right'
+                },
+                sharkselecter: {
+                    activeStyle: null,
+                    actualKey: 'value',
+                    displayKey: 'name'
+                },
+                sharktabs: {
+                    event: 'click',
+                    active: 0
+                },
+                sharktooltip: {
+                    direction: 'right'
+                },
+                sharktree: {
+                    preExpand: false,
+                    checkable: true,
+                    autolink: true,
+                    selectable: false
+                }
+            });
+        }]);
+        angular.module('demoApp').directive('demoMarkup',['$templateRequest', function($templateRequest) {
+            return {
+                restrict: 'A',
+                link: function($scope, element, attrs) {
+                    $templateRequest(element.attr('src'), true).then(function(tpl) {
+                        element.append('<pre class="language-markup">' + Prism.highlight(tpl, Prism.languages.markup) + '</pre>');
+                    }, function() {});
+                }
+            }
+        }]);
+        
+    </script>
+</head>
+
+<body class="fix-head">
+    <%- headContent %>
+	<div class="g-bd side-in-right">
+		<div class="g-side">
+            <div class="bs-docs-sidebar">
+                <ul class="nav nav-stacked" id="sideNav">
+                    <li><a href="#head">回到顶部</a></li>
+                    <li><a href="#modals">弹出层组件</a>
+                        <ul class="nav">
+                            <li><a href="#modal">modal 组件</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#tips">提示型组件</a>
+                        <ul class="nav">
+                            <li><a href="#tooltip">tooltip 组件</a></li>
+                            <li><a href="#toastr">toastr 组件</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#autocomplete">autocomplete 组件</a></li>
+                    <li><a href="#dropdown">dropdown 组件</a></li>
+                    <li><a href="#selecter">selecter 组件</a></li>
+
+                    <li><a href="#fileupload">fileupload 组件</a></li>
+                    <li><a href="#pager">pager 组件</a></li>
+                    <li><a href="#popover">popover 组件</a></li>
+                    <li><a href="#tabs">tabs 组件</a></li>
+                    <li><a href="#tree">tree 组件</a></li>
+                    
+                </ul>
+            </div>
+		</div>
+		<div class="g-content"> 
+            
+            <% include components/useage.html %>
+            <h1 id="modals" class="page-header">弹出层组件</h1>
+            <% include components/modal.html %>
+
+            <h1 id="tips" class="page-header">弹出层组件</h1>
+            <% include components/tooltip.html %>
+            <% include components/toastr.html %>
+
+			<% include components/autocomplete.html %>
+			<% include components/dropdown.html %>
+            <% include components/selecter.html %>
+
+			<% include components/fileupload.html %>
+            <% include components/pager.html %>
+            <% include components/popover.html %>
+            <% include components/tabs.html %>
+            <% include components/tree.html %>
+		</div>
+	</div>
+
+    <% include layout/foot.html%>
+
+    <script>
+        angular.bootstrap(document, ['demoApp']);
+    </script>
+
+</body>
+
+</html>

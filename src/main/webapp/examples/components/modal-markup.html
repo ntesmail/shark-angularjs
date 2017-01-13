@@ -1,0 +1,66 @@
+<div ng-controller="DemoModalCtrl">
+    <p>
+        <b>内容：</b>{{content}}
+        <button class="btn btn-sm btn-info" ng-click="openDialog();">修改内容</button>
+    </p>
+    <p>
+        <button class="btn btn-sm btn-info" ng-click="openAlert();">alert</button>
+    </p>
+    <p>
+        <button class="btn btn-sm btn-info" ng-click="openConfirm();">confirm</button>
+    </p>
+</div>
+<script type="text/javascript">
+angular.module('demoApp')
+    .controller('DemoModalCtrl', ['$scope', '$sce', 'sharkmodal', function($scope, $sce, sharkmodal) {
+        $scope.content = '我是弹窗内容';
+        $scope.openDialog = function(size) {
+            var modalInstance = sharkmodal.open({
+                templateUrl: '/shark-angular/examples/templates/dialog.html',
+                controller: 'DemoDialogCtrl',
+                size: 'sm',
+                backdrop: '',
+                resolve: {
+                    params: function() {
+                        return {
+                            content: $scope.content
+                        };
+                    }
+                }
+            });
+            modalInstance.then(function(res) {
+                console.log('close', res);
+                $scope.content = res.content;
+            }, function(res) {
+                console.log('dismiss', res);
+            });
+        };
+        $scope.openAlert = function() {
+            sharkmodal.alert({
+                content: '我是alert弹窗'
+            });
+        };
+        $scope.openConfirm = function() {
+            sharkmodal.confirm({
+                content: '我是confirm弹窗'
+            }).then(function() {
+                console.log('点击了确定');
+            }, function() {
+                console.log('点击了取消');
+            });
+        };
+    }])
+    .controller('DemoDialogCtrl', ['$scope', '$sce', 'modalInstance', 'params', function($scope, $sce, modalInstance, params) {
+        $scope.content = params.content;
+        $scope.dismiss = function() {
+            modalInstance.dismiss({
+                content: null
+            });
+        };
+        $scope.ok = function() {
+            modalInstance.close({
+                content: $scope.content
+            });
+        }
+    }]);
+</script>

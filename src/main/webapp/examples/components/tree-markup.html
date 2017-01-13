@@ -1,0 +1,74 @@
+
+<div ng-controller="DemoTreeCtrl">
+    <sharktree name="tree1" checkable="true" tree-data="treeData" onchecked="onchecked" pre-expand="true" pre-selects="preSelects"></sharktree>
+    <button class="btn btn-default" ng-click="selectAll();">全选</button>
+    <button class="btn btn-default" ng-click="reverseSelect();">反选</button>
+    <button class="btn btn-default" ng-click="selectNo();">不选</button>
+    <button class="btn btn-success" ng-click="build();">开始构建</button>
+</div>
+<script type="text/javascript">
+angular.module('demoApp')
+    .controller('DemoTreeCtrl', ['$scope', function($scope) {
+        $scope.treeData = [{
+            node_id: 'all',
+            node_name: '所有组件',
+            children: [{
+                node_id: 'autocomplete',
+                node_name: 'autocomplete组件'
+            }, {
+                node_id: 'fileupload',
+                node_name: 'fileupload组件'
+            }, {
+                node_id: 'modal',
+                node_name: 'modal组件'
+            }, {
+                node_id: 'pager',
+                node_name: 'pager组件'
+            }, {
+                node_id: 'popover',
+                node_name: 'popover组件'
+            }, {
+                node_id: 'selecter',
+                node_name: 'selecter组件'
+            }, {
+                node_id: 'tabs',
+                node_name: 'tabs组件'
+            }, {
+                node_id: 'toastr',
+                node_name: 'toastr组件'
+            }, {
+                node_id: 'tooltip',
+                node_name: 'tooltip组件'
+            }, {
+                node_id: 'tree',
+                node_name: 'tree组件'
+            }]
+        }];
+        $scope.preSelects = ['all'];
+        $scope.onchecked = function(node, isChecked) {
+            console.log(node, isChecked);
+        };
+        $scope.onselected = function(node) {
+            console.log(node);
+        };
+        $scope.selectAll = function() {
+            $scope.tree1.selectAll();
+        };
+        $scope.reverseSelect = function() {
+            $scope.tree1.reverseSelect();
+        };
+        $scope.selectNo = function() {
+            $scope.tree1.selectNo();
+        };
+        $scope.build = function() {
+            var nodes = $scope.tree1.getCheckedNodes();
+            var modules = [];
+            for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].node_id !== 'all') {
+                    modules.push(nodes[i].node_id);
+                }
+            };
+            window.open('/shark-angular/custom/build/modules/shark-angular.ui.js?modules=' + modules.join(','));
+        };
+    }]);
+</script>

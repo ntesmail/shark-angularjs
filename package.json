@@ -1,0 +1,37 @@
+{
+  "name": "@ntesmail/shark-angular",
+  "version": "1.1.1",
+  "description": "shark-angular组件库，基于shark-ui打造的angular组件库",
+  "keywords": "shark angular jquery",
+  "main": "index.js",
+  "author": "sweetyx",
+  "license": "MIT",
+  "scripts": {
+    "test": "gulp serve"
+  },
+  "homepage": "http://shark.mail.netease.com/shark-angular/index.html",
+  "dependencies": {
+    "@ntesmail/shark-ui": "^1.3.2"
+  },
+  "devDependencies": {
+    "@ntesmail/shark-css": "^1.2.6",
+    "body-parser": "^1.5.12",
+    "ejs": "^2.5.2",
+    "express": "^4.13.3",
+    "gulp": "^3.9.0",
+    "gulp-clean": "^0.3.2",
+    "md5": "^2.2.1 ",
+    "run-sequence": "^1.2.2",
+    "shark-automation": "^1.4.1",
+    "showdown": "^1.6.0",
+    "sync-request": "^3.0.1",
+    "yargs": "^5.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ntesmail/shark-angular"
+  },
+  "engines": {
+    "node": ">=5.9.0"
+  }
+}

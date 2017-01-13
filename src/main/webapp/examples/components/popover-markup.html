@@ -1,0 +1,11 @@
+<div ng-controller="DemoPopoverCtrl">
+    <button class="btn btn-sm btn-info" name="popover1" sharkpopover popover-title="我是标题" popover-content="我是内容" direction="right">点我</button>
+    <button class="btn btn-sm btn-info" name="popover2" sharkpopover popover-title="{{title}}" popover-content-url="/shark-angular/examples/templates/popover.html" close="bodyclick" direction="top">点我</button>
+</div>
+<script type="text/javascript">
+    angular.module('demoApp')
+        .controller('DemoPopoverCtrl', ['$scope', '$sce', function($scope, $sce) {
+            $scope.title = 'I am title';
+            $scope.content = $sce.trustAsHtml('<b style="color:#ff0000;">I am content</b>');
+        }]);
+</script>

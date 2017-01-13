@@ -1,0 +1,33 @@
+
+> 配置项：
+
+>> active-style
+- 是否必须：否
+- 类型：string
+- 默认值：null
+- 说明：选中之后的样式，point | nike
+
+>> actual-key
+- 是否必须：否
+- 类型：string
+- 默认值：'value'
+- 说明：对应的真值字段
+
+>> display-key
+- 是否必须：否
+- 类型：string
+- 默认值：'name'
+- 说明：对应的展示值字段
+
+>> name
+- 是否必须：否
+- 类型：string
+- 默认值：无
+- 说明：如果定义了name属性，把selecter组件赋给$scope，比如name为selecter1，那么controller中就可以使用 $scope.selecter1对象，$scope.selecter1对象所具有的方法请参见
+- shark-ui的api
+
+>> onselect
+- 是否必须：否
+- 类型：function
+- 默认值：无
+- 说明：点击下拉框选项之后的回调函数

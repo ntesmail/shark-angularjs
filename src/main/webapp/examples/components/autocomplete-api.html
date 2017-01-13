@@ -1,0 +1,33 @@
+> 配置项：
+
+>> filterdata
+- 是否必须：是
+- 类型：function : (value,config)
+- 默认值：无
+- 说明：用作数据过滤的函数 @return [{json}]
+
+>> display-key
+- 是否必须：否
+- 类型：string
+- 默认值：name
+- 说明： 配合filterData函数，filterData的返回结果必须包含displayKey字段 eg.如果displayKey为 name ,那么filterData的返回结果可以为 [{name: '1@163.com'}]
+
+>> autocomplete
+- 是否必须：否
+- 类型：boolean
+- 默认值：false
+- 说明：true，在键盘上下移动时，会自动填充输入框
+
+>> name
+- 是否必须：否
+- 类型：string
+- 默认值：无
+- 说明：如果定义了name属性，把autocomplete组件赋给$scope，比如name为autocomplete1，那么controller中就可以使用 $scope.autocomplete1对象，$scope.autocomplete1对象所具有的方法请参见
+>> 	shark-ui的api
+	
+
+>> onselected
+- 是否必须：否
+- 类型：function : (data)
+- 默认值：无
+- 说明：当选中待选列表的某一项之后，触发的回调函数

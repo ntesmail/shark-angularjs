@@ -1,0 +1,50 @@
+> 配置项：
+
+>> current-page
+- 是否必须：是
+- 类型：number
+- 默认值：无
+- 说明：当前是第几页
+
+>> gopage
+- 是否必须：否
+- 类型：boolean
+- 默认值：false
+- 说明：是否需要调转页码的按钮
+
+>> hl
+- 是否必须：否
+- 类型：object
+- 默认值：{ firstpage: '首页', prevpage: '上一页', nextpage: '下一页', lastpage: '尾页', gopage: '跳转' }
+- 说明：语言配置
+
+>> name
+- 是否必须：否
+- 类型：string
+- 默认值：无
+- 说明：如果定义了name属性，把pager组件赋给$scope，比如name为pager1，那么controller中就可以使用 $scope.pager1对象，$scope.pager1对象所具有的方法请参见
+- shark-ui的api
+
+>> segment-size
+- 是否必须：否
+- 类型：number
+- 默认值：5
+- 说明：每段大小
+
+>> start-from
+- 是否必须：否
+- 类型：number
+- 默认值：1
+- 说明：第1页实际对应的页码（eg.有些项目后端传的页码是从0开始的，那么startFrom设置为0）
+
+>> total-page
+- 是否必须：是
+- 类型：number
+- 默认值：无
+- 说明：一共有多少页
+
+>> onwillchange
+- 是否必须：否
+- 类型：function
+- 默认值：无
+- 说明：将要改变页码时调用的函数
