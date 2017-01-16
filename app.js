@@ -30,6 +30,8 @@ app.get(config.contextPath + '/index.html', function(req, res) {
     //向页面模板传递参数，可以传递字符串和对象，注意格式
     res.render('index', {converter: converter, headContent: headContent, footContent: footContent});
 });
+// templates
+app.use(config.contextPath + '/examples/templates', express.static(path.join(webappDir, 'app/examples/templates')));
 //font only
 app.use(config.contextPath + '/font', express.static(path.join(webappDir, 'app/font')));
 //mimg
