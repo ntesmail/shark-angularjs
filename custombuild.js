@@ -7,6 +7,7 @@ var os = require('os');
 var exec = require('sync-exec');
 var bodyParser = require('body-parser');
 var md5 = require('md5');
+var distDir = 'build_dist';
 
 function execCmd(cmds, processOpts) {
     if (os.platform() === 'win32') {
@@ -59,12 +60,12 @@ function makeCustomBuildAble(app, config) {
             res.send(fs.readFileSync(path.join(config.rootPath, 'cache', modulesMd5), 'utf-8'));
         } else {
             execCmd(['gulp', 'build-modules', ' --modules', modules]);
-            var stream1 = fs.readFileSync(path.join(config.rootPath, 'dist', 'shark-angular.ui.js'), 'utf-8');
+            var stream1 = fs.readFileSync(path.join(config.rootPath, distDir, 'shark-angular.ui.js'), 'utf-8');
             fs.writeFileSync(path.join(config.rootPath, 'cache', modulesMd5), stream1, { encoding: 'utf-8' });
             md5map[modulesMd5] = modules;
             fs.writeFileSync(cacheUrl, JSON.stringify(md5map), { encoding: 'utf-8' });
             res.set('Content-Type', 'application/octet-stream');
-            var stream2 = fs.readFileSync(path.join(config.rootPath, 'dist', 'shark-angular.ui.js'), 'utf-8');
+            var stream2 = fs.readFileSync(path.join(config.rootPath, distDir, 'shark-angular.ui.js'), 'utf-8');
             res.send(stream2);
         }
     });

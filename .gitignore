@@ -1,5 +1,6 @@
 /.tmp/*
 /build/*
+/build_dist/*
 /cache/*
 /dist/*
 /node_modules/*
