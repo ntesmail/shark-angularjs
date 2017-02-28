@@ -1,52 +1,47 @@
-
 <style type="text/css">
-    .myfileupload{
-        width: 100px;
-        height: 100px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        text-align: center;
-        background-color: #4a9ce2;
-        color: #ffffff;
-        border-radius: 10px;
-        font-size: 14px;
-        cursor: pointer;
-    }
+.myfileupload {
+    width: 100px;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    background-color: #4a9ce2;
+    color: #ffffff;
+    border-radius: 10px;
+    font-size: 14px;
+    cursor: pointer;
+}
 </style>
-
 <div ng-controller="DemoFileuploadCtrl">
-    <sharkfileupload
-        class="myfileupload" 
-        name="fileupload1" 
-        url="/shark-angular/xhr/file/upload.do?filekey={{filekey}}" 
-        accept="image/jpg,image/jpeg" 
-        dragable="true" 
-        autoupload="true" 
-        onselected="onselected" 
-        onuploading="onuploading" 
-        onuploaded="onuploaded" 
-        onfailed="onfailed">
+    <sharkfileupload class="myfileupload" name="fileupload" accept="'image/jpg,image/jpeg'" dragable="true" autoupload="false" on-selected="onSelected" on-uploading="onUploading" on-uploaded="onUploaded" on-failed="onFailed">
         {{filename?filename:'请选择文件'}}
     </sharkfileupload>
+    <hr/>
+    <button class="btn btn-success" ng-click="upload();">开始上传</button>
 </div>
 <script type="text/javascript">
-    angular.module('demoApp')
-        .controller('DemoFileuploadCtrl', ['$scope', function($scope) {
-            $scope.filename = null;
-            $scope.onselected = function(){
-                console.log(arguments);
-            };
-            $scope.onuploading = function(){
-                console.log(arguments);
-            };
-            $scope.onuploaded = function(file){
-                $scope.filename = file.name;
-                alert('上传成功');
-            };
-            $scope.onfailed = function(){
-                console.log(arguments);
-            };
-        }]);
+angular.module('demoApp')
+    .controller('DemoFileuploadCtrl', ['$scope', function($scope) {
+        $scope.filename = null;
+        $scope.onSelected = function(file) {
+            $scope.filename = file.name;
+            console.log(arguments);
+        };
+        $scope.onUploading = function(file, percent) {
+            console.log(arguments);
+        };
+        $scope.onUploaded = function(file, res) {
+            alert('上传成功');
+        };
+        $scope.onFailed = function(file, error) {
+            console.log(arguments);
+        };
+        $scope.upload = function() {
+            $scope.fileupload.upload('/shark-angular/xhr/file/upload.do', {
+                id: 1,
+                name: 'test'
+            });
+        };
+    }]);
 </script>
-

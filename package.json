@@ -24,6 +24,7 @@
     "run-sequence": "^1.2.2",
     "shark-automation": "^1.4.1",
     "showdown": "^1.6.0",
+    "sync-exec": "^0.6.2",
     "sync-request": "^3.0.1",
     "yargs": "^5.0.0"
   },

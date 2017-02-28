@@ -1,11 +1,11 @@
-require('@ntesmail/shark-ui/src/main/webapp/js/components/selecter.ui');
+require('@ntesmail/shark-ui/src/main/webapp/js/components/dropdown.ui');
 var COMPONENTS = require('../common/const');
 angular.module('shark-angular.ui')
-    .directive(COMPONENTS.dropdown, ['sharkconfig', function (sharkconfig) {
+    .directive(COMPONENTS.dropdown, ['sharkconfig', function(sharkconfig) {
         var DropdownConfig = sharkconfig.getConfig()[COMPONENTS.dropdown];
         return {
             restrict: 'E',
-            link: function ($scope, element, attrs) {
+            link: function($scope, element, attrs) {
                 var dropdown;
                 var disableWatcher;
                 // 销毁
@@ -21,21 +21,20 @@ angular.module('shark-angular.ui')
                 }
 
                 // 回调函数
-                var selectCb = $scope.$eval(attrs.onselect);
+                var selectCb = sharkconfig.getAttrValue($scope, attrs.onSelected);
                 // 按钮的文字
-                var text = attrs.text;
+                var text = sharkconfig.getAttrValue($scope, attrs.text);
                 // 对应的真值字段
-                var actualKey = (typeof attrs.actualKey !== 'undefined' ? attrs.actualKey : DropdownConfig.actualKey);
+                var actualKey = (typeof attrs.actualKey !== 'undefined' ? sharkconfig.getAttrValue($scope, attrs.actualKey) : DropdownConfig.actualKey);
                 // 对应的展示值字段
-                var displayKey = (typeof attrs.displayKey !== 'undefined' ? attrs.displayKey : DropdownConfig.displayKey);
+                var displayKey = (typeof attrs.displayKey !== 'undefined' ? sharkconfig.getAttrValue($scope, attrs.displayKey) : DropdownConfig.displayKey);
                 // 如果定义了name属性，把dropdown组件赋给$scope
                 var dropdownName = attrs.name;
 
-
                 // 下拉框数据变化后，重置下拉框
-                $scope.$watch(function () {
-                    return $scope.$eval(attrs.dropdownData);
-                }, function (newValue, oldValue) {
+                $scope.$watch(function() {
+                    return $scope.$eval(attrs.data);
+                }, function(newValue, oldValue) {
                     if (!newValue) {
                         return;
                     }
@@ -45,7 +44,7 @@ angular.module('shark-angular.ui')
                         text: text,
                         actualKey: actualKey,
                         displayKey: displayKey,
-                        onSelected: function (v) {
+                        onSelected: function(v) {
                             if (typeof selectCb === 'function') {
                                 selectCb.apply(dropdown, arguments);
                                 if (!$scope.$$phase) {
@@ -54,13 +53,12 @@ angular.module('shark-angular.ui')
                             }
                         }
                     });
-                    element.append(dropdown);
-
+                    element.append(dropdown.component);
                     if (typeof attrs.ngDisabled !== 'undefined') {
                         // 监听组件是否被禁用
-                        disableWatcher = $scope.$watch(function () {
+                        disableWatcher = $scope.$watch(function() {
                             return $scope.$eval(attrs.ngDisabled);
-                        }, function (newValue, oldValue) {
+                        }, function(newValue, oldValue) {
                             if (dropdown) {
                                 if (newValue === true) {
                                     dropdown.disable();
@@ -77,7 +75,7 @@ angular.module('shark-angular.ui')
                 }, true);
 
                 // $scope销毁时同步销毁dropdown组件
-                $scope.$on('$destroy', function () {
+                $scope.$on('$destroy', function() {
                     destroy();
                 });
             }

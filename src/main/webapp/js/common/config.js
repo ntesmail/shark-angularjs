@@ -1,6 +1,6 @@
 var COMPONENTS = require('./const');
 angular.module('shark-angular.ui')
-    .provider("sharkconfig", function () {
+    .provider("sharkconfig", function() {
         var baseConfig = {};
         baseConfig[COMPONENTS.autocomplete] = {
             debounceTime: 300,
@@ -45,8 +45,7 @@ angular.module('shark-angular.ui')
             displayKey: 'name'
         };
         baseConfig[COMPONENTS.tabs] = {
-            event: 'click',
-            active: 0
+            event: 'click'
         };
         baseConfig[COMPONENTS.toastr] = {
             duration: 3000
@@ -60,14 +59,26 @@ angular.module('shark-angular.ui')
             autolink: true,
             selectable: false
         };
-        this.setConfig = function (options) {
+        this.setConfig = function(options) {
             angular.extend(baseConfig, options);
         };
-        this.$get = function () {
+        this.$get = function() {
             return {
-                getConfig: function () {
+                getConfig: function() {
                     return baseConfig;
+                },
+                getAttrValue: function($scope, attr) {
+                    if (typeof attr === 'undefined' || attr === null || attr === '') {
+                        return attr;
+                    }
+                    var arr = attr.match(/^'(.*)'$/);
+                    if (arr) {
+                        return arr[1];
+                    } else {
+                        return $scope.$eval(attr);
+                    }
                 }
             }
         };
+
     });

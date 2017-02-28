@@ -70,7 +70,7 @@ angular.module('shark-angular.ui')
                     if (preSelects && angular.isArray(preSelects)) {
                         for (var i = 0; i < preSelects.length; i++) {
                             if (checkable) {
-                                tree.checkNodeForce(preSelects[i], autolink);
+                                tree.checkNode(preSelects[i], autolink);
                             }
                             if (selectable) {
                                 tree.selectNode(preSelects[i]);

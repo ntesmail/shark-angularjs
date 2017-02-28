@@ -20,15 +20,15 @@ angular.module('shark-angular.ui')
                     }
                 }
                 // 回调函数
-                var selectedCb = $scope.$eval(attrs.onselected);
+                var selectedCb = sharkconfig.getAttrValue($scope, attrs.onSelected);
                 // 自定义处理数据的filter
-                var filterData = $scope.$eval(attrs.filterdata);
+                var filterData = sharkconfig.getAttrValue($scope, attrs.filterData);
                 // 对应的展示值字段
-                var debounceTime = (typeof attrs.debounceTime !== 'undefined' ? attrs.debounceTime : AutocompleteConfig.debounceTime);
+                var debounceTime = (typeof attrs.debounceTime !== 'undefined' ? sharkconfig.getAttrValue($scope, attrs.debounceTime) : AutocompleteConfig.debounceTime);
                 // 对应的展示值字段
-                var displayKey = (typeof attrs.displayKey !== 'undefined' ? attrs.displayKey : AutocompleteConfig.displayKey);
+                var displayKey = (typeof attrs.displayKey !== 'undefined' ? sharkconfig.getAttrValue($scope, attrs.displayKey) : AutocompleteConfig.displayKey);
                 // 是否自动完成
-                var isAutocomplete = (typeof attrs.autocomplete !== 'undefined' ? $scope.$eval(attrs.autocomplete) : AutocompleteConfig.autocomplete);
+                var isAutocomplete = (typeof attrs.autocomplete !== 'undefined' ? sharkconfig.getAttrValue($scope, attrs.autocomplete) : AutocompleteConfig.autocomplete);
                 // 如果定义了name属性，把autocomplete组件赋给$scope
                 var autocompleteName = attrs.name;
 
@@ -38,9 +38,9 @@ angular.module('shark-angular.ui')
                     debounceTime: debounceTime,
                     displayKey: displayKey,
                     autocomplete: isAutocomplete,
-                    onSelected: function() {
+                    onSelected: function(value) {
                         if (ngModelCtrl && ngModelCtrl.$setViewValue) {
-                            ngModelCtrl.$setViewValue(autocomplete.val());
+                            ngModelCtrl.$setViewValue(value[displayKey]);
                         }
                         if (typeof selectedCb === 'function') {
                             selectedCb.apply(autocomplete, arguments);
