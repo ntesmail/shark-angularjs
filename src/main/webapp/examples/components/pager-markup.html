@@ -1,26 +1,23 @@
 
 <div ng-controller="DemoPagerCtrl">
-    <sharkpager name="pager1" current-page="pagination.page" total-page="pagination.totalPage" onwillchange="pageChanged" ng-disabled="false"></sharkpager>
-    <sharkpager name="pager2" current-page="pagination2.page" total-page="pagination2.totalPage" onwillchange="pageChanged2" gopage="true" ng-disabled="true"></sharkpager>
+    <sharkpager name="pager" current-page="pagination.page" total-page="pagination.totalPage" on-page-changed="pageChanged" hl="hl" start-from="1" segment-size="10" gopage="true"></sharkpager>
 </div>
 <script type="text/javascript">
     angular.module('demoApp')
         .controller('DemoPagerCtrl', ['$scope', function($scope) {
+            $scope.hl = {
+                firstpage: 'first',
+                prevpage: 'prev',
+                nextpage: 'next',
+                lastpage: 'last',
+                gopage: 'go'
+            };
             $scope.pagination = {
-                page: 1,
-                totalPage: 100
+                page: 5,
+                totalPage: 10
             };
             $scope.pageChanged = function(page) {
-                $scope.pagination.page = page;
                 console.log($scope.pagination.page);
-            };
-            $scope.pagination2 = {
-                page: 10,
-                totalPage: 100
-            };
-            $scope.pageChanged2 = function(page) {
-                this.setPage(page);
-                console.log($scope.pagination2.page);
             };
         }]);
 </script>

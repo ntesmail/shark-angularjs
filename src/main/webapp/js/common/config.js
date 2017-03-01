@@ -45,7 +45,7 @@ angular.module('shark-angular.ui')
             displayKey: 'name'
         };
         baseConfig[COMPONENTS.tabs] = {
-            event: 'click'
+            initTab: 0
         };
         baseConfig[COMPONENTS.toastr] = {
             duration: 3000

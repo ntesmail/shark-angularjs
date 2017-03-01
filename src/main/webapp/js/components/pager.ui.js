@@ -19,15 +19,15 @@ angular.module('shark-angular.ui')
                     }
                 }
                 // 回调函数
-                var willchangedCb = $scope.$eval(attrs.onwillchange);
+                var pageChangedCb = sharkconfig.getAttrValue($scope, attrs.onPageChanged);
                 // 语言
-                var hl = (typeof attrs.hl !== 'undefined' ? $scope.$eval(attrs.hl) : PagerConfig.hl);
+                var hl = (typeof attrs.hl !== 'undefined' ? sharkconfig.getAttrValue($scope, attrs.hl) : PagerConfig.hl);
                 // 每页展示大小
-                var segmentSize = (typeof attrs.segmentSize !== 'undefined' ? $scope.$eval(attrs.segmentSize) : PagerConfig.segmentSize);
+                var segmentSize = (typeof attrs.segmentSize !== 'undefined' ? sharkconfig.getAttrValue($scope, attrs.segmentSize) : PagerConfig.segmentSize);
                 // 页码从0开始还是从1开始
-                var startFrom = (typeof attrs.startFrom !== 'undefined' ? $scope.$eval(attrs.startFrom) : PagerConfig.startFrom);
+                var startFrom = (typeof attrs.startFrom !== 'undefined' ? sharkconfig.getAttrValue($scope, attrs.startFrom) : PagerConfig.startFrom);
                 // 是否需要跳转按钮
-                var gopage = (typeof attrs.gopage !== 'undefined' ? $scope.$eval(attrs.gopage) : PagerConfig.gopage);
+                var gopage = (typeof attrs.gopage !== 'undefined' ? sharkconfig.getAttrValue($scope, attrs.gopage) : PagerConfig.gopage);
                 // 如果定义了name属性，把pager组件赋给$scope
                 var pagerName = attrs.name;
 
@@ -37,16 +37,16 @@ angular.module('shark-angular.ui')
                     segmentSize: segmentSize,
                     startFrom: startFrom,
                     gopage: gopage,
-                    onWillChange: function() {
-                        if (typeof willchangedCb === 'function') {
-                            willchangedCb.apply(pager, arguments);
+                    onPageChanged: function() {
+                        if (typeof pageChangedCb === 'function') {
+                            pageChangedCb.apply(pager, arguments);
                             if (!$scope.$$phase) {
                                 $scope.$apply();
                             }
                         }
                     }
                 });
-                element.append(pager);
+                element.append(pager.component);
                 if (typeof attrs.ngDisabled !== 'undefined') {
                     // 监听组件是否被禁用
                     disableWatcher = $scope.$watch(function() {
@@ -65,11 +65,10 @@ angular.module('shark-angular.ui')
 
                 // currentPage和totalPage变化后，触发回调函数
                 $scope.$watch(function() {
-                    var res = $scope.$eval(attrs.currentPage) + '-' + $scope.$eval(attrs.totalPage);
-                    return res;
+                    return sharkconfig.getAttrValue($scope, attrs.currentPage) + '-' + sharkconfig.getAttrValue($scope, attrs.totalPage);
                 }, function() {
-                    var page = $scope.$eval(attrs.currentPage);
-                    var totalPages = $scope.$eval(attrs.totalPage);
+                    var page = sharkconfig.getAttrValue($scope, attrs.currentPage);
+                    var totalPages = sharkconfig.getAttrValue($scope, attrs.totalPage);
                     pager.setPage(page, totalPages);
                 }, true);
 

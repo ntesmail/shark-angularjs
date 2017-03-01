@@ -19,29 +19,45 @@ angular.module('shark-angular.ui')
                     }
                 }
                 var defer = $q.defer();
-                var tooltipName = attrs.name;
-                var tooltipDirection = attrs.direction || TooltipConfig.direction;
-                var tooltipContent = element.attr('tooltip-content');
-                var tooltipContentUrl = attrs.tooltipContentUrl;
-                //优先获取tooltip-content
-                if(tooltipContent){
-                    defer.resolve(tooltipContent);
-                }
-                //获取url模板
-                else if (tooltipContentUrl) {
+                var tooltipDirection = (typeof attrs.direction !== 'undefined' ? sharkconfig.getAttrValue($scope, attrs.direction) : TooltipConfig.close);
+                //获取tooltip-content模板
+                if (typeof attrs.tooltipContent !== 'undefined') {
+                    defer.resolve(sharkconfig.getAttrValue($scope, attrs.tooltipContent));
+                } else {
+                    var tooltipContentUrl = sharkconfig.getAttrValue($scope, attrs.tooltipContentUrl);
                     $templateRequest(tooltipContentUrl, true).then(function(response) {
                         defer.resolve(response);
                     }, function() {
                         defer.reject();
                     });
                 }
+                var tooltipName = attrs.name;
                 defer.promise.then(function(tpl){
-                    tooltip = element.sharkTooltip({
+                    tooltip = $.fn.sharkTooltip({
                         content: tpl,
                         direction: tooltipDirection,
                         reRenderOnShow: false,
+                        onShow: function() {
+                            if (typeof attrs.tooltipContent !== 'undefined') {
+                                tooltip.component.find('.popover-content').html(sharkconfig.getAttrValue($scope, attrs.tooltipContent));
+                                $compile(tooltip.component)($scope);
+                                if (!$scope.$$phase) {
+                                    $scope.$apply();
+                                }
+                            }
+                            else{
+                                if(!tooltip.isCompiled){
+                                    tooltip.isCompiled = true;
+                                    $compile(tooltip.component)($scope);
+                                    if (!$scope.$$phase) {
+                                        $scope.$apply();
+                                    }
+                                }
+                            }
+                        },
+                        onHide: function() {}
                     });
-                    $compile(tooltip[0])($scope);
+                    tooltip.linkTo($(element));
                     if(typeof attrs.ngDisabled !== 'undefined'){
                         // 监听组件是否被禁用
                         disableWatcher = $scope.$watch(function() {

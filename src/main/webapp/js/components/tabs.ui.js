@@ -22,30 +22,26 @@ angular.module('shark-angular.ui')
                         tabs = null;
                     }
                 }
-                // 触发事件
-                var event = (typeof attrs.event !== 'undefined' ? attrs.event : TabsConfig.event);
-                // 当前是第几个tab
-                var active = (typeof attrs.active !== 'undefined' ? $scope.$eval(attrs.active) : TabsConfig.active);
                 // 回调函数
-                var onTabSwitch = $scope.$eval(attrs.ontabswitch);
+                var onTabSwitch = sharkconfig.getAttrValue($scope, attrs.onTabSwitch);
+                // 初始化展示第几个tab
+                var initTab = (typeof attrs.initTab !== 'undefined' ? sharkconfig.getAttrValue($scope, attrs.initTab) : TabsConfig.initTab);
                 // 如果定义了name属性，把pager组件赋给$scope
                 var tabsName = attrs.name;
                 var tabPanels = element.find('.tab-pane[tabs-content-url]');
                 // 获取url中的内容，插入对应位置
                 for (var i = 0; i < tabPanels.length; i++) {
-                    var elem = $(tabPanels[i]);
-                    $templateRequest(elem.attr('tabs-content-url'), true).then(function(tpl) {
-                        elem.html($compile(tpl)($scope));
-                    }, function() {});
+                    (function(elem){
+                        $templateRequest(elem.attr('tabs-content-url'), true).then(function(tpl) {
+                            elem.html($compile(tpl)($scope));
+                            elem = null;
+                        });
+                    })($(tabPanels[i]));
                 }
                 // 初始化tabs组件
                 tabs = element.sharkTabs({
-                    event: event,
-                    active: active,
+                    initTab: initTab,
                     onTabSwitch: function(index) {
-                        if (typeof attrs.active !== 'undefined') {
-                            $parse(attrs.active + '=value')($scope, { value: index });
-                        }
                         if (typeof onTabSwitch === 'function') {
                             onTabSwitch.apply(tabs, arguments);
                         }
@@ -66,16 +62,6 @@ angular.module('shark-angular.ui')
                             if (newValue === false) {
                                 tabs.enable();
                             }
-                        }
-                    });
-                }
-                if (typeof attrs.active !== 'undefined') {
-                    // 监听组件active值是否改变
-                    activeWatcher = $scope.$watch(function() {
-                        return $scope.$eval(attrs.active);
-                    }, function(newValue, oldValue) {
-                        if (tabs) {
-                            tabs.switchTo(newValue, false); //不触发回调
                         }
                     });
                 }

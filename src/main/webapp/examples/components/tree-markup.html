@@ -1,6 +1,6 @@
 
 <div ng-controller="DemoTreeCtrl">
-    <sharktree name="tree1" checkable="true" tree-data="treeData" onchecked="onchecked" pre-expand="true" pre-selects="preSelects"></sharktree>
+    <sharktree name="tree" checkable="true" tree-data="treeData" onchecked="onchecked" pre-expand="true" pre-selects="preSelects"></sharktree>
     <button class="btn btn-default" ng-click="selectAll();">全选</button>
     <button class="btn btn-default" ng-click="reverseSelect();">反选</button>
     <button class="btn btn-default" ng-click="selectNo();">不选</button>
@@ -52,16 +52,16 @@ angular.module('demoApp')
             console.log(node);
         };
         $scope.selectAll = function() {
-            $scope.tree1.selectAll();
+            $scope.tree.selectAll();
         };
         $scope.reverseSelect = function() {
-            $scope.tree1.reverseSelect();
+            $scope.tree.reverseSelect();
         };
         $scope.selectNo = function() {
-            $scope.tree1.selectNo();
+            $scope.tree.selectNo();
         };
         $scope.build = function() {
-            var nodes = $scope.tree1.getCheckedNodes();
+            var nodes = $scope.tree.getCheckedNodes();
             var modules = [];
             for (var i = 0; i < nodes.length; i++) {
                 if (nodes[i].node_id !== 'all') {
