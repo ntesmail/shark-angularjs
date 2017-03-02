@@ -7,5 +7,4 @@ require('./components/popover.ui');
 require('./components/selecter.ui');
 require('./components/tabs.ui');
 require('./components/toastr.ui');
-require('./components/tooltip.ui');
 require('./components/tree.ui');

@@ -1,33 +1,31 @@
 > 配置项：
 
->> filterdata
+>> filter-data
 - 是否必须：是
-- 类型：function : (value,config)
+- 类型：function @return [{}]
 - 默认值：无
-- 说明：用作数据过滤的函数 @return [{json}]
+- 说明：用户自定义的过滤函数，得到需要展示的列表，建议使用
 
 >> display-key
 - 是否必须：否
 - 类型：string
-- 默认值：name
-- 说明： 配合filterData函数，filterData的返回结果必须包含displayKey字段 eg.如果displayKey为 name ,那么filterData的返回结果可以为 [{name: '1@163.com'}]
+- 默认值：'name'
+- 说明：要展示的字段名
+
+>> debounce-time
+- 是否必须：否
+- 类型：number
+- 默认值：300
+- 说明：防抖动，间隔300毫秒触发一次数据过滤
 
 >> autocomplete
 - 是否必须：否
 - 类型：boolean
 - 默认值：false
-- 说明：true，在键盘上下移动时，会自动填充输入框
-
->> name
-- 是否必须：否
-- 类型：string
-- 默认值：无
-- 说明：如果定义了name属性，把autocomplete组件赋给$scope，比如name为autocomplete1，那么controller中就可以使用 $scope.autocomplete1对象，$scope.autocomplete1对象所具有的方法请参见
->> 	shark-ui的api
+- 说明：是否开启鼠标移动或者按下方向键时，将输入框中的内容补全
 	
-
->> onselected
+>> on-selected
 - 是否必须：否
-- 类型：function : (data)
-- 默认值：无
-- 说明：当选中待选列表的某一项之后，触发的回调函数
+- 类型：function
+- 默认值：function(itemData) {}
+- 说明：选中下拉列表中的某一项后的回调函数

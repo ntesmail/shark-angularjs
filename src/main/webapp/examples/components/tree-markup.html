@@ -1,20 +1,22 @@
-
 <div ng-controller="DemoTreeCtrl">
-    <sharktree name="tree1" checkable="true" tree-data="treeData" onchecked="onchecked" pre-expand="true" pre-selects="preSelects"></sharktree>
-    <button class="btn btn-default" ng-click="selectAll();">全选</button>
-    <button class="btn btn-default" ng-click="reverseSelect();">反选</button>
-    <button class="btn btn-default" ng-click="selectNo();">不选</button>
+    <sharktree name="tree" data="data" checkable="true" autolink="false" pre-expand="true" pre-selects="preSelects" on-checked="onChecked"></sharktree>
+    <button class="btn btn-default" ng-click="checkAll();">全选</button>
+    <button class="btn btn-default" ng-click="reverseCheckAll();">反选</button>
+    <button class="btn btn-default" ng-click="checkNo();">不选</button>
     <button class="btn btn-success" ng-click="build();">开始构建</button>
 </div>
 <script type="text/javascript">
 angular.module('demoApp')
     .controller('DemoTreeCtrl', ['$scope', function($scope) {
-        $scope.treeData = [{
+        $scope.data = [{
             node_id: 'all',
             node_name: '所有组件',
             children: [{
                 node_id: 'autocomplete',
                 node_name: 'autocomplete组件'
+            }, {
+                node_id: 'dropdown',
+                node_name: 'dropdown组件'
             }, {
                 node_id: 'fileupload',
                 node_name: 'fileupload组件'
@@ -37,31 +39,25 @@ angular.module('demoApp')
                 node_id: 'toastr',
                 node_name: 'toastr组件'
             }, {
-                node_id: 'tooltip',
-                node_name: 'tooltip组件'
-            }, {
                 node_id: 'tree',
                 node_name: 'tree组件'
             }]
         }];
         $scope.preSelects = ['all'];
-        $scope.onchecked = function(node, isChecked) {
+        $scope.onChecked = function(node, isChecked) {
             console.log(node, isChecked);
         };
-        $scope.onselected = function(node) {
-            console.log(node);
+        $scope.checkAll = function() {
+            $scope.tree.checkAll();
         };
-        $scope.selectAll = function() {
-            $scope.tree1.selectAll();
+        $scope.reverseCheckAll = function() {
+            $scope.tree.reverseCheck();
         };
-        $scope.reverseSelect = function() {
-            $scope.tree1.reverseSelect();
-        };
-        $scope.selectNo = function() {
-            $scope.tree1.selectNo();
+        $scope.checkNo = function() {
+            $scope.tree.checkNo();
         };
         $scope.build = function() {
-            var nodes = $scope.tree1.getCheckedNodes();
+            var nodes = $scope.tree.getCheckedNodes();
             var modules = [];
             for (var i = 0; i < nodes.length; i++) {
                 if (nodes[i].node_id !== 'all') {

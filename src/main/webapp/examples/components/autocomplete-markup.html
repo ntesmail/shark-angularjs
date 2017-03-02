@@ -1,14 +1,12 @@
 <div ng-controller="DemoAutocompleteCtrl">
     请输入邮箱地址：
-    <input class="form-control" style="width: 300px;" name="autocomplete1" ng-model="autocomplete1Value" sharkautocomplete filterdata="filterData"
-        debounce-time="0" onselected="onselected" /> {{autocomplete1Value}}
+    <input class="form-control" sharkautocomplete name="autocomplete" ng-model="autocompleteValue" filter-data="filterData" display-key="'name'" autocomplete="false" debounce-time="'0'" on-selected="onSelected" />
 </div>
 <script type="text/javascript">
-    angular.module('demoApp')
+angular.module('demoApp')
     .controller('DemoAutocompleteCtrl', ['$scope', function($scope) {
-        var arr = ['163.com', 'vip.com', 'qq.com', 'gmail.com'];
+        var arr = ['163.com', '163.vip.com', 'qq.com', 'gmail.com'];
         $scope.filterData = function(value, config) {
-            console.log(value, config);
             var list = [];
             if (value.indexOf('@') > -1) {
                 var email = value.split('@');
@@ -28,9 +26,8 @@
             }
             return list;
         };
-        $scope.onselected = function(item) {
-            console.log($scope.autocomplete1Value);
+        $scope.onSelected = function(item) {
+            console.log($scope.autocompleteValue);
         };
     }]);
-
 </script>

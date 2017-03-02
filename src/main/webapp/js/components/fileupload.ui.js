@@ -19,16 +19,16 @@ angular.module('shark-angular.ui')
                     }
                 }
                 // 回调函数
-                var selectedCb = $scope.$eval(attrs.onselected);
-                var uploadingCb = $scope.$eval(attrs.onuploading);
-                var uploadedCb = $scope.$eval(attrs.onuploaded);
-                var failedCb = $scope.$eval(attrs.onfailed);
+                var selectedCb = sharkconfig.getAttrValue($scope, attrs.onSelected);
+                var uploadingCb = sharkconfig.getAttrValue($scope, attrs.onUploading);
+                var uploadedCb = sharkconfig.getAttrValue($scope, attrs.onUploaded);
+                var failedCb = sharkconfig.getAttrValue($scope, attrs.onFailed);
                 // 支持的文件类型
-                var accept = (typeof attrs.accept !== 'undefined' ? attrs.accept : FileuploadConfig.accept);
+                var accept = (typeof attrs.accept !== 'undefined' ? sharkconfig.getAttrValue($scope, attrs.accept) : FileuploadConfig.accept);
                 // 是否支持拖拽
-                var dragable = (typeof attrs.dragable !== 'undefined' ? $scope.$eval(attrs.dragable) : FileuploadConfig.dragable);
+                var dragable = (typeof attrs.dragable !== 'undefined' ? sharkconfig.getAttrValue($scope, attrs.dragable) : FileuploadConfig.dragable);
                 // 是否自动上传
-                var autoupload = (typeof attrs.autoupload !== 'undefined' ? $scope.$eval(attrs.autoupload) : FileuploadConfig.autoupload);
+                var autoupload = (typeof attrs.autoupload !== 'undefined' ? sharkconfig.getAttrValue($scope, attrs.autoupload) : FileuploadConfig.autoupload);
                 // 如果定义了name属性，把fileupload组件赋给$scope
                 var fileuploadName = attrs.name;
 
@@ -45,7 +45,7 @@ angular.module('shark-angular.ui')
                             }
                         }
                         if (autoupload) {
-                            fileupload.upload(attrs.url);
+                            fileupload.upload(sharkconfig.getAttrValue($scope, attrs.url));
                         }
                     },
                     onUploading: function() {

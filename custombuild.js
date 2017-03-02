@@ -50,9 +50,9 @@ function makeCustomBuildAble(app, config) {
     app.all(config.contextPath + '/custom/build/modules/shark-angular.ui.js', function(req, res) {
         var modules = req.query.modules || req.body.modules || '';
         if (!modules) {
-            modules = 'autocomplete,fileupload,modal,pager,popover,selecter,tabs,toastr,tooltip,tree';
+            modules = 'autocomplete,dropdown,fileupload,modal,pager,popover,selecter,tabs,toastr,tree';
         }
-        modules = modules.split(',').sort(); //排序，保证同样的模块只生成一次
+        modules = modules.split(',').sort().toString(); //排序，保证同样的模块只生成一次
         var md5map = JSON.parse(fs.readFileSync(cacheUrl));
         var modulesMd5 = md5(modules) + '.js';
         if (md5map[modulesMd5]) {

@@ -1,21 +1,21 @@
 
 <div ng-controller="DemoDropDownCtrl">
-    <sharkdropdown name="dropdown1" text="下拉菜单" dropdown-data="data" onselect="onselect"></sharkdropdown>
+    <sharkdropdown name="dropdown" data="data" text="'下拉菜单'" actual-key="'value'" display-key="'html'" on-selected="onSelected"></sharkdropdown>
 </div>
 <script type="text/javascript">
 angular.module('demoApp')
     .controller('DemoDropDownCtrl', ['$scope', function($scope) {
         $scope.data = [{
             value: 'create',
-            name: '新建'
+            html: '<span class="icon-plus"></span>&nbsp;&nbsp;新建'
         }, {
             value: 'edit',
-            name: '编辑'
+            html: '<span class="icon-chevron-right"></span>&nbsp;&nbsp;编辑'
         }, {
             value: 'delete',
-            name: '删除'
+            html: '<span class="icon-close"></span>&nbsp;&nbsp;删除'
         }];
-        $scope.onselect = function(item) {
+        $scope.onSelected = function(item) {
             console.log(item);
         };
     }]);
