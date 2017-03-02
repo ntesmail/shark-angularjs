@@ -72,6 +72,7 @@ gulp.task('copy-dist-js', function() {
 gulp.task('build', function(cb) {
     sharkAutomation.registerBuildTasks({
         baseConf: config,
+        gulp: gulp,
         webpack: {
             replaceEntry: {
                 'js/shark-angular.ui': [path.join(__dirname, '/src/main/webapp/js/build.ui.js')]
