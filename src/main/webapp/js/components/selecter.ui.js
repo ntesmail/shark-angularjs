@@ -25,7 +25,7 @@ angular.module('shark-angular.ui')
                     }
                 }
                 // 回调函数
-                var selectCb = sharkconfig.getAttrValue($scope, attrs.onSelect);
+                var selectCb = sharkconfig.getAttrValue($scope, attrs.onSelected);
                 // 对应的真值字段
                 var actualKey = (typeof attrs.actualKey !== 'undefined' ? sharkconfig.getAttrValue($scope, attrs.actualKey) : SelecterConfig.actualKey);
                 // 对应的展示值字段

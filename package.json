@@ -1,6 +1,6 @@
 {
   "name": "@ntesmail/shark-angular",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "shark-angular组件库，基于shark-ui打造的angular组件库",
   "keywords": "shark angular jquery",
   "main": "index.js",
