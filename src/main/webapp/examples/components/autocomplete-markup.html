@@ -1,33 +1,47 @@
+<style type="text/css">
+    .shark-autocomplete {
+        width: 100%;
+        height: 34px;
+        line-height: 34px;
+        font-size: 14px;
+        color: #555555;
+        background-color: #ffffff;
+        border: 1px solid #cccccc;
+        border-radius: 4px;
+    }
+</style>
 <div ng-controller="DemoAutocompleteCtrl">
-    请输入邮箱地址：
-    <input class="form-control" sharkautocomplete name="autocomplete" ng-model="autocompleteValue" filter-data="filterData" display-key="'name'" autocomplete="false" debounce-time="'0'" on-selected="onSelected" />
+    请输入邮箱地址：{{autocompleteValue}}
+    <sharkautocomplete name="autocomplete" ng-model="autocompleteValue" filter-data="filterData" display-key="'name'" autocomplete="false"
+        debounce-time="'0'" on-selected="onSelected"></sharkautocomplete>
 </div>
 <script type="text/javascript">
-angular.module('demoApp')
-    .controller('DemoAutocompleteCtrl', ['$scope', function($scope) {
-        var arr = ['163.com', '163.vip.com', 'qq.com', 'gmail.com'];
-        $scope.filterData = function(value, config) {
-            var list = [];
-            if (value.indexOf('@') > -1) {
-                var email = value.split('@');
-                for (var i = 0; i < arr.length; i++) {
-                    if (arr[i].indexOf(email[1]) > -1) {
+    angular.module('demoApp')
+        .controller('DemoAutocompleteCtrl', ['$scope', function ($scope) {
+            $scope.arr = ['163.com', '163.vip.com', 'qq.com', 'gmail.com'];
+            $scope.filterData = function (value, config) {
+                var list = [];
+                if (value.indexOf('@') > -1) {
+                    var email = value.split('@');
+                    for (var i = 0; i < $scope.arr.length; i++) {
+                        if ($scope.arr[i].indexOf(email[1]) > -1) {
+                            list.push({
+                                name: email[0] + '@' + $scope.arr[i]
+                            });
+                        }
+                    }
+                } else {
+                    for (var i = 0; i < $scope.arr.length; i++) {
                         list.push({
-                            name: email[0] + '@' + arr[i]
+                            name: value + '@' + $scope.arr[i]
                         });
                     }
                 }
-            } else {
-                for (var i = 0; i < arr.length; i++) {
-                    list.push({
-                        name: value + '@' + arr[i]
-                    });
-                }
-            }
-            return list;
-        };
-        $scope.onSelected = function(item) {
-            console.log($scope.autocompleteValue);
-        };
-    }]);
+                return list;
+            };
+            $scope.onSelected = function (item) {
+                console.log($scope.autocompleteValue);
+            };
+        }]);
+
 </script>

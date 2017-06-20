@@ -1,0 +1,35 @@
+<div ng-controller="DemoCheckboxGroupCtrl">
+    <form class="form form-horizontal">
+        <div class="form-group form-group-sm">
+            <label class="col-sm-2 control-label">爱好：</label>
+            <div class="col-sm-4">
+                <checkboxgroup name="habits" ng-model="habits"></checkboxgroup>
+            </div>
+            <div class="col-sm-6">
+                <p class="form-control-static">{{habits}}</p>
+            </div>
+        </div>
+    </form>
+</div>
+<script type="text/javascript">
+    angular.module('demoApp')
+        .controller('DemoCheckboxGroupCtrl', ['$scope', '$timeout', function ($scope, $timeout) {
+            $scope.habits = [{
+                value: 'eat',
+                name: '吃饭',
+                checked: false
+            }, {
+                value: 'sleep',
+                name: '睡觉',
+                checked: false
+            }, {
+                value: 'fightdd',
+                name: '打豆豆',
+                checked: false
+            }];
+            $timeout(function () {
+                $scope.habits[1].checked = true;
+            }, 2000);
+        }]);
+
+</script>

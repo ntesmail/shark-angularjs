@@ -1,0 +1,30 @@
+<div ng-controller="DemoRadioGroupCtrl">
+    <form class="form form-horizontal">
+        <div class="form-group form-group-sm">
+            <label class="col-sm-2 control-label">性别：</label>
+            <div class="col-sm-4">
+                <radiogroup name="sex" ng-model="sex" direction="horizonal" radioname="sexradio" radios="radioData"></radiogroup>
+            </div>
+            <div class="col-sm-2">
+                <p class="form-control-static">{{sex}}</p>
+            </div>
+        </div>
+    </form>
+</div>
+<script type="text/javascript">
+    angular.module('demoApp')
+        .controller('DemoRadioGroupCtrl', ['$scope', '$timeout', function ($scope, $timeout) {
+            $scope.radioData = [{
+                value: 1,
+                name: '男'
+            }, {
+                value: 2,
+                name: '女'
+            }];
+            $scope.sex = 1;
+            $timeout(function () {
+                $scope.sex = 2;
+            }, 2000);
+        }]);
+
+</script>

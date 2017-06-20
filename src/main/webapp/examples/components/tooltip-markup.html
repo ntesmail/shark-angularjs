@@ -1,7 +1,22 @@
 <div ng-controller="DemoTooltipCtrl">
-    <button class="btn btn-sm btn-info" name="tooltip" sharktooltip tooltip-content="'我的电话号码是：<br/>18898033520'" direction="'right'">tooltip</button>
+    <p ng-repeat="item in tooltipList track by $index">
+        <button class="btn btn-sm btn-info" name="tooltip{{item.id}}" sharktooltip template-url="item.templateUrl">{{item.btnText}}</button>
+    </p>
 </div>
 <script type="text/javascript">
-angular.module('demoApp')
-    .controller('DemoTooltipCtrl', ['$scope', function($scope) {}]);
+    angular.module('demoApp')
+        .controller('DemoTooltipCtrl', ['$scope', '$sce', '$timeout', function ($scope, $sce, $timeout) {
+            $scope.tooltipList = [{
+                id: '101',
+                btnText: 'btn1',
+                templateUrl: '/shark-angularjs/examples/templates/tooltip-1.html',
+                content: $sce.trustAsHtml('<div><p>内容1:</p><span>我是按钮1</span></div>')
+            }, {
+                id: '102',
+                btnText: 'btn2',
+                templateUrl: '/shark-angularjs/examples/templates/tooltip-2.html',
+                content: $sce.trustAsHtml('<div><p>内容2:</p><span>我是按钮2</span></div>')
+            }];
+        }]);
+
 </script>

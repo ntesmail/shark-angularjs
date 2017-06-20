@@ -1,22 +1,22 @@
-
 <div ng-controller="DemoDropDownCtrl">
     <sharkdropdown name="dropdown" data="data" text="'下拉菜单'" actual-key="'value'" display-key="'html'" on-selected="onSelected"></sharkdropdown>
 </div>
 <script type="text/javascript">
-angular.module('demoApp')
-    .controller('DemoDropDownCtrl', ['$scope', function($scope) {
-        $scope.data = [{
-            value: 'create',
-            html: '<span class="icon-plus"></span>&nbsp;&nbsp;新建'
-        }, {
-            value: 'edit',
-            html: '<span class="icon-chevron-right"></span>&nbsp;&nbsp;编辑'
-        }, {
-            value: 'delete',
-            html: '<span class="icon-close"></span>&nbsp;&nbsp;删除'
-        }];
-        $scope.onSelected = function(item) {
-            console.log(item);
-        };
-    }]);
+    angular.module('demoApp')
+        .controller('DemoDropDownCtrl', ['$scope', function ($scope) {
+            $scope.data = [{
+                value: 'create',
+                html: '<span class="icon-plus"></span>&nbsp;&nbsp;新建'
+            }, {
+                value: 'edit',
+                html: '<span class="icon-chevron-right"></span>&nbsp;&nbsp;编辑'
+            }, {
+                value: 'delete',
+                html: '<span class="icon-close"></span>&nbsp;&nbsp;删除'
+            }];
+            $scope.onSelected = function (item) {
+                console.log(item);
+            };
+        }]);
+
 </script>

@@ -11,75 +11,79 @@
     </p>
 </div>
 <script type="text/javascript">
-angular.module('demoApp')
-    .controller('DemoModalCtrl', ['$scope', '$sce', 'sharkmodal', function($scope, $sce, sharkmodal) {
-        $scope.content = '我是弹窗内容';
-        $scope.openDialog = function(size) {
-            var modalInstance = sharkmodal.open({
-                templateUrl: '/shark-angular/examples/templates/dialog.html',
-                // template: `
-                //     <div class="modal-header">
-                //         <button class="close" ng-click="dismiss()">×</button>
-                //         <h4 class="modal-title">
-                //             修改内容
-                //         </h4>
-                //     </div>
-                //     <div class="modal-body">
-                //         <input type="text" name="content" ng-model="content" />
-                //     </div>
-                //     <div class="modal-footer">
-                //         <button class="btn btn-primary" type="button" ng-click="ok()">确定</button>
-                //         <button class="btn btn-warning" type="button" ng-click="dismiss()">取消</button>
-                //     </div>
-                // `,
-                controller: 'DemoDialogCtrl',
-                size: 'sm',
-                backdrop: '',
-                resolve: {
-                    params: function() {
-                        return {
-                            content: $scope.content
-                        };
+    angular.module('demoApp')
+        .controller('DemoModalCtrl', ['$scope', '$sce', 'SharkModal', function ($scope, $sce, SharkModal) {
+            $scope.content = '我是弹窗内容';
+            $scope.openDialog = function (size) {
+                var modalInstance = SharkModal.open({
+                    templateUrl: '/shark-angularjs/examples/templates/dialog.html',
+                    // template: `
+                    //     <div class="modal-header">
+                    //         <button class="close" ng-click="dismiss()">×</button>
+                    //         <h4 class="modal-title">
+                    //             修改内容
+                    //         </h4>
+                    //     </div>
+                    //     <div class="modal-body">
+                    //         <input type="text" name="content" ng-model="content" />
+                    //     </div>
+                    //     <div class="modal-footer">
+                    //         <button class="btn btn-primary" type="button" ng-click="ok()">确定</button>
+                    //         <button class="btn btn-warning" type="button" ng-click="dismiss()">取消</button>
+                    //     </div>
+                    // `,
+                    controller: 'DemoDialogCtrl',
+                    size: 'sm',
+                    backdrop: '',
+                    resolve: {
+                        params: function () {
+                            return {
+                                content: $scope.content
+                            };
+                        }
                     }
-                }
-            });
-            modalInstance.then(function(res) {
-                console.log('close', res);
-                $scope.content = res.content;
-            }, function(res) {
-                console.log('dismiss', res);
-            });
-        };
-        $scope.openAlert = function() {
-            sharkmodal.alert({
-                content: '我是alert弹窗'
-            }).then(function() {
-                console.log('点击了确定');
-            }, function() {
-                console.log('点击了取消');
-            });
-        };
-        $scope.openConfirm = function() {
-            sharkmodal.confirm({
-                content: '我是confirm弹窗'
-            }).then(function() {
-                console.log('点击了确定');
-            }, function() {
-                console.log('点击了取消');
-            });
-        };
-    }])
-    .controller('DemoDialogCtrl', ['$scope', '$sce', 'modalInstance', 'params', function($scope, $sce, modalInstance, params) {
-        $scope.content = params.content;
-        $scope.dismiss = function() {
-            modalInstance.dismiss({
-                content: null
-            });
-        };
-        $scope.ok = function() {
-            modalInstance.close({
-                content: $scope.content
-            });
-        }
-    }]);
+                });
+                modalInstance.then(function (res) {
+                    console.log('close', res);
+                    $scope.content = res.content;
+                }, function (res) {
+                    console.log('dismiss', res);
+                });
+            };
+            $scope.openAlert = function () {
+                SharkModal.alert({
+                    content: '我是alert弹窗'
+                }).then(function () {
+                    console.log('点击了确定');
+                }, function () {
+                    console.log('点击了取消');
+                });
+            };
+            $scope.openConfirm = function () {
+                SharkModal.confirm({
+                    content: '我是confirm弹窗'
+                }).then(function () {
+                    console.log('点击了确定');
+                }, function () {
+                    console.log('点击了取消');
+                });
+            };
+        }])
+        .controller('DemoDialogCtrl', ['$scope', '$sce', 'modalInstance', 'params', function ($scope, $sce, modalInstance, params) {
+            $scope.content = params.content;
+            $scope.afterViewInit = function () {
+                console.log(document.getElementById('xx-1'));
+            }
+            $scope.dismiss = function () {
+                modalInstance.dismiss({
+                    content: null
+                });
+            };
+            $scope.ok = function () {
+                modalInstance.close({
+                    content: $scope.content
+                });
+            }
+        }]);
+
 </script>

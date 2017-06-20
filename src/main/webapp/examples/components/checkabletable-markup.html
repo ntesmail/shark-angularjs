@@ -1,0 +1,57 @@
+<div ng-controller="DemoCheckableTableCtrl">
+    <button type="button" class="btn btn-default btn-sm" ng-click="delete();">删除</button>
+    <table checkabletable item-list="itemList" callback="getSelectedItems" class="table table-condensed table-striped table-hover">
+        <thead>
+            <tr class="info">
+                <th class="width-2">
+                    <input type="checkbox" ng-model="isAllItemsChecked"></input>
+                </th>
+                <th>
+                    ID
+                </th>
+                <th>
+                    姓名
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in itemList track by $index">
+                <td>
+                    <input type="checkbox" ng-model="item.isItemChecked" item-index="{{$index}}"></input>
+                </td>
+                <td>
+                    {{item.id}}
+                </td>
+                <td>
+                    {{item.name}}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<script type="text/javascript">
+    angular.module('demoApp')
+        .controller('DemoCheckableTableCtrl', ['$scope', function ($scope) {
+            $scope.itemList = [{
+                id: '101',
+                name: '张三'
+            }, {
+                id: '102',
+                name: '李四'
+            }]
+            $scope.delete = function () {
+                var selectedItems = $scope.getSelectedItems();
+                var arr = [];
+                selectedItems.forEach(function (item) {
+                    arr.push(item.name);
+                });
+                if (arr.length > 0) {
+                    alert('要删除的项为：' + arr.join(','));
+                }
+                else {
+                    alert('请先选择要删除的项');
+                }
+            }
+        }]);
+
+</script>

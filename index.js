@@ -1,3 +1,1 @@
-require('./src/main/webapp/js/shark-angular.ui');
-
-module.exports = 'shark-angular.ui';
+export * from './src/main/webapp/scripts/src/shark-angularjs.ui.page';

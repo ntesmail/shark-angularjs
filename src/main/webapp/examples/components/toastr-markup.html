@@ -1,4 +1,3 @@
-
 <div ng-controller="DemoToastrCtrl">
     <p>
         <button class="btn btn-success" ng-click="success();">成功提示</button>
@@ -8,13 +7,14 @@
     </p>
 </div>
 <script type="text/javascript">
-angular.module('demoApp')
-    .controller('DemoToastrCtrl', ['$scope', 'sharktoastr', function($scope, sharktoastr) {
-        $scope.success = function() {
-            sharktoastr.success('保存成功！');
-        };
-        $scope.error = function() {
-            sharktoastr.error('保存失败！');
-        };
-    }]);
+    angular.module('demoApp')
+        .controller('DemoToastrCtrl', ['$scope', 'SharkToastr', function ($scope, SharkToastr) {
+            $scope.success = function () {
+                SharkToastr.success('保存成功！');
+            };
+            $scope.error = function () {
+                SharkToastr.error('保存失败！');
+            };
+        }]);
+
 </script>

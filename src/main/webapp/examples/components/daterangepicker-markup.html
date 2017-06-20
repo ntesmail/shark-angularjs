@@ -1,0 +1,20 @@
+<div ng-controller="DemoDaterangepickerCtrl">
+    <sharkdaterangepicker ng-model="daterange" date-disable="option.disable" on-change="onChange"></sharkdaterangepicker>
+</div>
+<script type="text/javascript">
+    angular.module('demoApp')
+        .controller('DemoDaterangepickerCtrl', ['$scope', function ($scope) {
+            var startDate = Date.today().getTime();
+            var endDate = Date.today().addDay(7).getTime();
+            $scope.daterange = [startDate, endDate];
+            $scope.option = {
+                disable: [function (date) {
+                    return (date.getDay() === 6 || date.getDay() === 0)
+                }]
+            };
+            $scope.onChange = function () {
+                console.log('start_timestamp:', $scope.daterange[0], 'end_timestamp:', $scope.daterange[1]);
+            }
+        }]);
+
+</script>

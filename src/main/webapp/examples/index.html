@@ -23,28 +23,22 @@
 	<style type="text/css">
     @font-face {
         font-family: 'FontAwesome';
-        src: url('/shark-angular/font/FontAwesome.eot?lyuoqs');
-        src: url('/shark-angular/font/FontAwesome.eot?lyuoqs#iefix') format('embedded-opentype'), url('/shark-angular/font/FontAwesome.ttf?lyuoqs') format('truetype'), url('/shark-angular/font/FontAwesome.woff?lyuoqs') format('woff'), url('/shark-angular/font/FontAwesome.svg?lyuoqs#FontAwesome') format('svg');
+        src: url('/shark-angularjs/font/FontAwesome.eot?lyuoqs');
+        src: url('/shark-angularjs/font/FontAwesome.eot?lyuoqs#iefix') format('embedded-opentype'), url('/shark-angularjs/font/FontAwesome.ttf?lyuoqs') format('truetype'), url('/shark-angularjs/font/FontAwesome.woff?lyuoqs') format('woff'), url('/shark-angularjs/font/FontAwesome.svg?lyuoqs#FontAwesome') format('svg');
         font-weight: normal;
         font-style: normal;
     }
     </style>
-    <!-- build:js(src/main/webapp) /js/lib/jquery.js -->
-	<script type="text/javascript" src="/js/lib/jquery.js"></script>
-    <!-- endbuild -->
 
-    <!-- build:js(src/main/webapp) /js/lib/angular.js -->
-    <script type="text/javascript" src="/js/lib/angular.js"></script>
-    <!-- endbuild -->
-
-	<script type="text/javascript" src="/js/shark-angular.ui.js"></script>
+    <script src="https://cdn.bootcss.com/angular.js/1.6.4/angular.js"></script>
+	<script type="text/javascript" src="/scripts/dist/shark-angularjs.ui.page.js"></script>
 	
 	<script type="text/javascript">
-		angular.module('demoApp', ['shark-angular.ui'])
-        .config(['sharkconfigProvider', function(sharkconfigProvider) {
-            sharkconfigProvider.setConfig({
+		angular.module('demoApp', ['shark-angularjs.ui'])
+        .config(['SharkConfigProvider', function(SharkConfigProvider) {
+            SharkConfigProvider.setConfig({
                 sharkautocomplete: {
-                	debounceTime: 300,
+                	debounceTime: 0,
                     autocomplete: false,
                     displayKey: 'name'
                 },
@@ -126,20 +120,22 @@
                         </ul>
                     </li>
                     <li><a href="#autocomplete">autocomplete 组件</a></li>
+                    <li><a href="#radiogroup">radiogroup 组件</a></li>
+                    <li><a href="#checkboxgroup">checkboxgroup 组件</a></li>
+                    <li><a href="#datepicker">datepicker 组件</a></li>
                     <li><a href="#dropdown">dropdown 组件</a></li>
                     <li><a href="#selecter">selecter 组件</a></li>
-
                     <li><a href="#fileupload">fileupload 组件</a></li>
                     <li><a href="#pager">pager 组件</a></li>
                     <li><a href="#popover">popover 组件</a></li>
                     <li><a href="#tabs">tabs 组件</a></li>
                     <li><a href="#tree">tree 组件</a></li>
-                    
+                    <li><a href="#checkabletable">checkabletable 组件</a></li>
+                    <li><a href="#validator">validator 组件</a></li>
                 </ul>
             </div>
 		</div>
 		<div class="g-content"> 
-            
             <% include components/useage.html %>
             <h1 id="modals" class="page-header">弹出层组件</h1>
             <% include components/modal.html %>
@@ -147,16 +143,19 @@
             <h1 id="tips" class="page-header">弹出层组件</h1>
             <% include components/tooltip.html %>
             <% include components/toastr.html %>
-
 			<% include components/autocomplete.html %>
+            <% include components/radiogroup.html %>
+            <% include components/checkboxgroup.html %>
+            <% include components/datepicker.html %>
 			<% include components/dropdown.html %>
             <% include components/selecter.html %>
-
 			<% include components/fileupload.html %>
             <% include components/pager.html %>
             <% include components/popover.html %>
             <% include components/tabs.html %>
             <% include components/tree.html %>
+            <% include components/checkabletable.html %>
+            <% include components/validator.html %>
 		</div>
 	</div>
 

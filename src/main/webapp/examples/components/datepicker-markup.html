@@ -1,0 +1,56 @@
+<style type="text/css">
+    .shark-datepicker {
+        font-size: 0;
+        height: 34px;
+    }
+
+    .shark-datepicker-ipt {
+        width: 100%;
+        height: 34px;
+        line-height: 1.42857em;
+        display: inline-block;
+        font-size: 14px;
+        color: #555555;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        padding: 6px 12px;
+    }
+
+    .shark-datepicker-range .shark-datepicker-split {
+        width: 10%;
+        height: 34px;
+        line-height: 1.42857em;
+        display: inline-block;
+        font-size: 14px;
+        color: #555555;
+        background-color: #fff;
+        text-align: center;
+    }
+
+    .shark-datepicker-range .shark-datepicker-ipt {
+        width: 45%;
+    }
+</style>
+
+<div ng-controller="DemoDatepickerCtrl">
+    <sharkdatepicker ng-model="date" min-Date="option.minDate" max-Date="option.maxDate" format="option.format" on-change="onChange"></sharkdatepicker>
+</div>
+
+<script type="text/javascript">
+    angular.module('demoApp')
+        .controller('DemoDatepickerCtrl', ['$scope', function ($scope) {
+            var minDate = Date.today().addDay(-7);
+            var maxDate = Date.today().addDay(7);
+            maxDate.setHours(23);
+            maxDate.setMinutes(59);
+            maxDate.setSeconds(59);
+            $scope.date = Date.now();
+            $scope.option = {
+                maxDate: maxDate,
+                minDate: minDate,
+                format: "Y-m-d H:i:S"
+            }
+        }]);
+
+</script>

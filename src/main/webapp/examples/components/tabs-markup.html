@@ -1,43 +1,36 @@
 <div ng-controller="DemoTabsCtrl">
-    <sharktabs name="tabs" init-tab="0" on-tab-switch="tabSwitch">
-        <ul class="nav nav-tabs">
-            <li>
-                <a href="javascript:void(0);">Home</a>
-            </li>
-            <li>
-                <a href="javascript:void(0);">Profile</a>
-            </li>
-            <li>
-                <a href="javascript:void(0);">Messages</a>
-            </li>
-            <li>
-                <a href="javascript:void(0);">Settings</a>
-            </li>
-        </ul>
-        <div class="tab-content">
-            <div class="tab-pane" tabs-content-url="/shark-angular/examples/templates/tabs-1.html">
-            </div>
-            <div class="tab-pane" tabs-content-url="/shark-angular/examples/templates/tabs-2.html"> 
-            </div>
-            <div class="tab-pane">
-                333333
-            </div>
-            <div class="tab-pane">
-                444444
-            </div>
-        </div>
-    </sharktabs>
+    <sharktabs name="tabs" tabs="tabs" active="active" on-tab-switch="tabSwitch"></sharktabs>
 </div>
 <script type="text/javascript">
-angular.module('demoApp')
-    .controller('DemoTabsCtrl', ['$scope', '$timeout', 'sharkmodal', function($scope, $timeout, sharkmodal) {
-        $scope.tabSwitch = function(index) {
-            console.log('tab切换到：' + index);
-        };
-        $scope.tab1 = "111111";
-        $scope.tab2 = "222222";
-        $scope.openDialog = function(size) {
-            alert('点击了我');
-        };
-    }]);
+    angular.module('demoApp')
+        .controller('DemoTabsCtrl', ['$scope', '$timeout', function ($scope, $timeout) {
+            $scope.tabs = [{
+                title: '前端组',
+                template: '<span style="color:red;">{{tab1Content}}</span>'
+            }, {
+                title: '视觉组',
+                template: '<span style="color:green;">{{tab2Content}}</span>'
+            }, {
+                title: '运营组',
+                templateUrl: '/shark-angularjs/examples/templates/tabs-3.html'
+            }, {
+                title: '市场组',
+                templateUrl: '/shark-angularjs/examples/templates/tabs-4.html'
+            }];
+            $scope.tabSwitch = function (index) {
+                console.log('tab切换到：' + index);
+            };
+            $scope.active = 1;
+            $scope.tab1Content = "都是小哥哥";
+            $scope.tab2Content = "都是阿姨";
+            $scope.tab3Content = "都是小姐姐";
+            $scope.tab4Content = "都是大叔";
+            $scope.openDialog = function (size) {
+                alert('点击了我');
+            };
+            $timeout(function () {
+                $scope.active = 2;
+            }, 2000);
+        }]);
+
 </script>
