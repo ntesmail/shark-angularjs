@@ -4531,12 +4531,12 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
 
 			jQuery.fn.ready = function (fn) {
 
-				readyList.then(fn
+				readyList.then(fn)
 
 				// Wrap jQuery.readyException in a function so that the lookup
 				// happens at the time of error handling instead of callback
 				// registration.
-				).catch(function (error) {
+				.catch(function (error) {
 					jQuery.readyException(error);
 				});
 
@@ -7816,10 +7816,10 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
 				fadeTo: function fadeTo(speed, to, easing, callback) {
 
 					// Show any hidden elements after setting opacity to 0
-					return this.filter(isHiddenWithinTree).css("opacity", 0).show
+					return this.filter(isHiddenWithinTree).css("opacity", 0).show()
 
 					// Animate to the value specified
-					().end().animate({ opacity: to }, speed, easing, callback);
+					.end().animate({ opacity: to }, speed, easing, callback);
 				},
 				animate: function animate(prop, speed, easing, callback) {
 					var empty = jQuery.isEmptyObject(prop),
@@ -13933,9 +13933,9 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
 					}
 				};
 			}];
-		}
+		});
 
-		/***/);
+		/***/
 	},
 
 	/***/"J2i8":
@@ -16997,8 +16997,8 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
 				"m+": this.getMinutes(), //分 
 				"s+": this.getSeconds(), //秒 
 				"q+": Math.floor((this.getMonth() + 3) / 3), //季度 
-				"S": this.getMilliseconds //毫秒 
-				() };
+				"S": this.getMilliseconds() //毫秒 
+			};
 			if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
 			for (var k in o) {
 				if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, RegExp.$1.length == 1 ? o[k] : ("00" + o[k]).substr(("" + o[k]).length));
