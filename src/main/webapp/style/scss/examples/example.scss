@@ -1,2 +1,75 @@
 @import '@ntesmail/shark-css/src/main/webapp/style/scss/examples/example';
 @import 'flatpickr/dist/flatpickr';
+.m-area {
+    width: 550px;
+    margin: 50px auto;
+}
+
+.shark-datepicker {
+    font-size: 0;
+    height: 34px;
+}
+
+.shark-datepicker-ipt {
+    width: 100%;
+    height: 34px;
+    line-height: 1.42857em;
+    display: inline-block;
+    font-size: 14px;
+    color: #555555;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 6px 12px;
+}
+
+.shark-datepicker-range .shark-datepicker-split {
+    width: 10%;
+    height: 34px;
+    line-height: 1.42857em;
+    display: inline-block;
+    font-size: 14px;
+    color: #555555;
+    background-color: #fff;
+    text-align: center;
+}
+
+.shark-datepicker-range .shark-datepicker-ipt {
+    width: 45%;
+}
+
+.shark-autocomplete {
+    width: 100%;
+    height: 34px;
+    line-height: 34px;
+    font-size: 14px;
+    color: #555555;
+    background-color: #ffffff;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+}
+
+.valid-error,
+.valid-error a.selecter,
+.valid-error input.shark-datepicker-ipt,
+.valid-error input.shark-autocomplete {
+    border-color: #ff0000 !important;
+}
+
+.valid-error-text {
+    color: #ff0000 !important;
+}
+
+.myfileupload {
+    width: 100px;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    background-color: #4a9ce2;
+    color: #ffffff;
+    border-radius: 10px;
+    font-size: 14px;
+    cursor: pointer;
+}

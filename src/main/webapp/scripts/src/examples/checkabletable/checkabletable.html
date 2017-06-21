@@ -1,0 +1,31 @@
+<div class="m-area">
+    <button type="button" class="btn btn-default btn-sm" ng-click="delete();">删除</button>
+    <table checkabletable item-list="itemList" callback="getSelectedItems" class="table table-condensed table-striped table-hover">
+        <thead>
+            <tr class="info">
+                <th class="width-2">
+                    <input type="checkbox" ng-model="isAllItemsChecked"></input>
+                </th>
+                <th>
+                    ID
+                </th>
+                <th>
+                    姓名
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="item in itemList track by $index">
+                <td>
+                    <input type="checkbox" ng-model="item.isItemChecked" item-index="{{$index}}"></input>
+                </td>
+                <td>
+                    {{item.id}}
+                </td>
+                <td>
+                    {{item.name}}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,8 @@
+<div class="m-area">
+    <sharkfileupload ng-model="myfileupload" class="myfileupload" name="fileupload" accept="'image/jpg,image/jpeg'" dragable="true"
+        autoupload="false" on-selected="onSelected" on-uploading="onUploading" on-uploaded="onUploaded" on-failed="onFailed">
+        {{myfileupload.name?myfileupload.name:'请选择文件'}}
+    </sharkfileupload>
+    <hr/>
+    <button class="btn btn-success" ng-click="upload();">开始上传</button>
+</div>

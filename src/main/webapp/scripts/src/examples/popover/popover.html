@@ -1,0 +1,5 @@
+<div class="m-area">
+    <p ng-repeat="item in popoverList track by $index">
+        <button class="btn btn-sm btn-info" name="popover{{item.id}}" sharkpopover template="item.template">{{item.btnText}}</button>
+    </p>
+</div>

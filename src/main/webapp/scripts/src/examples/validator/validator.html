@@ -1,0 +1,200 @@
+<div class="m-area">
+    <form name="validator" shark-validator class="form form-horizontal">
+        <div class="u-formborder form-horizontal-label-4-2">
+            <div class="form-group form-group-sm">
+                <p class="form-control-static">数字校验：</p>
+            </div>
+            <div class="form-group form-group-sm">
+                <label class="col-sm-2 control-label">年龄：</label>
+                <div class="col-sm-4">
+                    <input ensure numbercheck min="14" max="30" name="age" ng-model="formData.age" class="form-control" type="text" />
+                </div>
+                <div class="col-sm-4">
+                    <p class="form-control-static">{{formData.age}}</p>
+                </div>
+            </div>
+            <div class="form-group form-group-sm">
+                <p class="form-control-static">最大长度和最小长度的校验：</p>
+            </div>
+            <div class="form-group form-group-sm">
+                <label class="col-sm-2 control-label">银行卡号：</label>
+                <div class="col-sm-4">
+                    <input minlencheck="16" maxlencheck="16" name="cardno" ng-model="formData.cardno" placeholder="请输入16位银行卡号" class="form-control"
+                        type="text" />
+                </div>
+                <div class="col-sm-4">
+                    <p class="form-control-static">{{formData.cardno}}</p>
+                </div>
+            </div>
+            <div class="form-group form-group-sm">
+                <p class="form-control-static">普通下拉框的校验：</p>
+            </div>
+            <div class="form-group form-group-sm">
+                <label class="col-sm-2 control-label">身份：</label>
+                <div class="col-sm-4">
+                    <select ensure class="form-control" name="identity" ng-model="formData.identity" ng-options="item.value as item.name for item in identities"
+                    />
+                    </select>
+                </div>
+                <div class="col-sm-4">
+                    <p class="form-control-static">{{formData.identity}}</p>
+                </div>
+            </div>
+            <div class="form-group form-group-sm">
+                <p class="form-control-static">前后输入需一致的校验：</p>
+            </div>
+            <div class="form-group form-group-sm">
+                <label class="col-sm-2 control-label">密码：</label>
+                <div class="col-sm-4">
+                    <input ensure name="password" validrelation="'password'" ng-model="formData.password" class="form-control" type="password"
+                    />
+                </div>
+                <div class="col-sm-4">
+                    <p class="form-control-static">{{formData.password}}</p>
+                </div>
+            </div>
+            <div class="form-group form-group-sm">
+                <label class="col-sm-2 control-label">重复密码：</label>
+                <div class="col-sm-4">
+                    <input ensure repeatcheck="password" validrelation="'password'" name="repeatPassword" ng-model="formData.repeatPassword"
+                        class="form-control" type="password" />
+                </div>
+                <div class="col-sm-4">
+                    <p class="form-control-static">{{formData.repeatPassword}}</p>
+                </div>
+            </div>
+            <div class="form-group form-group-sm">
+                <p class="form-control-static">唯一性校验（自定义校验）：</p>
+            </div>
+            <div class="form-group form-group-sm">
+                <label class="col-sm-2 control-label">姓名：</label>
+                <div class="col-sm-4">
+                    <input ensure customcheck="nameuniquecheck" name="name" ng-model="formData.name" class="form-control" type="text" />
+                </div>
+                <div class="col-sm-4">
+                    <p class="form-control-static">{{formData.remark}}</p>
+                </div>
+            </div>
+            <div class="form-group form-group-sm">
+                <p class="form-control-static">自定义的即时性的校验：</p>
+            </div>
+            <div class="form-group form-group-sm">
+                <label class="col-sm-2 control-label">textarea校验（自定义校验）：</label>
+                <div class="col-sm-4">
+                    <textarea ensure countchars="100" customcheck="ilovechinacheck" name="remark" ng-model="formData.remark" placeholder="必须输入关键字：我爱中国"
+                        style="height:150px;" class="form-control"></textarea>
+                </div>
+                <div class="col-sm-4">
+                    <p class="form-control-static">{{formData.remark}}</p>
+                </div>
+            </div>
+            <div class="form-group form-group-sm">
+                <p class="form-control-static">有关联关系的校验：</p>
+            </div>
+            <div ng-repeat="item in percentList track by $index">
+                <div class="form-group form-group-sm">
+                    <label class="col-sm-2 control-label">{{item.title}}占比：</label>
+                    <div class="col-sm-4">
+                        <input name="percent{{$index+1}}" validrelation="'percent'" ng-model="item.percent" class="form-control" type="number" />
+                    </div>
+                </div>
+            </div>
+            <div class="form-group form-group-sm">
+                <label class="col-sm-2 control-label">总计：</label>
+                <div class="col-sm-4">
+                    <input name="percenttotal" validrelation="'percent'" readonly ng-model="percentTotal" class="form-control" type="number"
+                    />
+                </div>
+            </div>
+            <div class="form-group form-group-sm">
+                <p class="form-control-static">sharkautocomplete校验：</p>
+            </div>
+            <div class="form-group form-group-sm">
+                <label class="col-sm-2 control-label">邮箱：</label>
+                <div class="col-sm-4">
+                    <sharkautocomplete ensure emailcheck name="email" ng-model="formData.email" filter-data="filterData"></sharkautocomplete>
+                </div>
+                <div class="col-sm-4">
+                    <p class="form-control-static">{{formData.email}}</p>
+                </div>
+            </div>
+            <div class="form-group form-group-sm">
+                <p class="form-control-static">sharkfileupload校验：</p>
+            </div>
+            <div class="form-group form-group-sm">
+                <label class="col-sm-2 control-label">图片：</label>
+                <div class="col-sm-4">
+                    <sharkfileupload clicktouch filecheck name="file" ng-model="formData.file" class="myfileupload">
+                        请选择文件
+                    </sharkfileupload>
+                </div>
+                <div class="col-sm-4">
+                    <p class="form-control-static">{{formData.file.name}}</p>
+                </div>
+            </div>
+            <div class="form-group form-group-sm">
+                <p class="form-control-static">sharkdatepicker校验：</p>
+            </div>
+            <div class="form-group form-group-sm">
+                <label class="col-sm-2 control-label">开始时间：</label>
+                <div class="col-sm-4">
+                    <sharkdatepicker ensure datetimecheck name="date" ng-model="formData.date"></sharkdatepicker>
+                </div>
+                <div class="col-sm-4">
+                    <p class="form-control-static">{{formData.date}}</p>
+                </div>
+            </div>
+            <div class="form-group form-group-sm">
+                <label class="col-sm-2 control-label">时间范围：</label>
+                <div class="col-sm-7">
+                    <sharkdaterangepicker ensure datetimecheck name="daterange" ng-model="formData.daterange" maxbetweendays=1></sharkdaterangepicker>
+                </div>
+                <div class="col-sm-2">
+                    <p class="form-control-static">{{formData.daterange}}</p>
+                </div>
+            </div>
+            <div class="form-group form-group-sm">
+                <p class="form-control-static">sharkselecter校验（自定义校验）：</p>
+            </div>
+            <div class="form-group form-group-sm">
+                <label class="col-sm-2 control-label">分组：</label>
+                <div class="col-sm-7">
+                    <sharkselecter customcheck="groupcheck" name="group" ng-model="formData.group" data="groups" actual-key="'value'" display-key="'name'"></sharkselecter>
+                </div>
+                <div class="col-sm-2">
+                    <p class="form-control-static">{{formData.group}}</p>
+                </div>
+            </div>
+            <div class="form-group form-group-sm">
+                <p class="form-control-static">checkboxgroup校验（自定义校验）：</p>
+            </div>
+            <div class="form-group form-group-sm">
+                <label class="col-sm-2 control-label">爱好：</label>
+                <div class="col-sm-4">
+                    <checkboxgroup customcheck="habitscheck" name="habits" ng-model="formData.habits"></checkboxgroup>
+                </div>
+                <div class="col-sm-2">
+                    <p class="form-control-static">{{formData.habits}}</p>
+                </div>
+            </div>
+            <div class="form-group form-group-sm">
+                <p class="form-control-static">radiogroup校验（自定义校验）：</p>
+            </div>
+            <div class="form-group form-group-sm">
+                <label class="col-sm-2 control-label">性别：</label>
+                <div class="col-sm-4">
+                    <radiogroup ensure customcheck="sexcheck" name="sex" ng-model="formData.sex" radioname="sexradio" radios="sexData"></radiogroup>
+                </div>
+                <div class="col-sm-2">
+                    <p class="form-control-static">{{formData.sex}}</p>
+                </div>
+            </div>
+            <div class="form-group form-group-sm">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="button" form-submit="submitFrom();" class="btn btn-success btn-sm">确定</button>
+                    <a type="button" class="btn btn-default btn-sm">取消</a>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>shark-angular组件库_shark组件平台</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="Keywords" content="shark,html,css,jquery,angular,angular2,bootstrap,组件库,前端组件库">
+    <meta name="description" content="shark组件平台，是包含了css框架、jquery、angular、angular2、bootstrap组件库的前端组件平台。">
+    <!-- build:css /style/css/example.css -->
+    <link rel="stylesheet" href="/style/css/examples/example.css">
+    <!-- endbuild -->
+    <style type="text/css">
+        @font-face {
+            font-family: 'FontAwesome';
+            src: url('/shark-angularjs/font/FontAwesome.eot?lyuoqs');
+            src: url('/shark-angularjs/font/FontAwesome.eot?lyuoqs#iefix') format('embedded-opentype'), url('/shark-angularjs/font/FontAwesome.ttf?lyuoqs') format('truetype'), url('/shark-angularjs/font/FontAwesome.woff?lyuoqs') format('woff'), url('/shark-angularjs/font/FontAwesome.svg?lyuoqs#FontAwesome') format('svg');
+            font-weight: normal;
+            font-style: normal;
+        }
+    </style>
+</head>
+
+<body>
+    <style>
+        .navtitle{
+            position: absolute;
+            right: 20px;
+            top: 20px;
+        }
+        .navtitle a{
+            cursor: pointer;
+            display: block;
+        }
+    </style>
+    <div class="navtitle" ng-controller="examples.angularjs.GlobalCtrl">
+        <a ng-click="go('examples-useage')">examples-useage</a>
+        <a ng-click="go('examples-autocomplete')">examples-autocomplete</a>
+        <a ng-click="go('examples-checkabletable')">examples-checkabletable</a>
+        <a ng-click="go('examples-checkboxgroup')">examples-checkboxgroup</a>
+        <a ng-click="go('examples-datepicker')">examples-datepicker</a>
+        <a ng-click="go('examples-dropdown')">examples-dropdown</a>
+        <a ng-click="go('examples-fileupload')">examples-fileupload</a>
+        <a ng-click="go('examples-modal')">examples-modal</a>
+        <a ng-click="go('examples-pager')">examples-pager</a>
+        <a ng-click="go('examples-popover')">examples-popover</a>
+        <a ng-click="go('examples-radiogroup')">examples-radiogroup</a>
+        <a ng-click="go('examples-selecter')">examples-selecter</a>
+        <a ng-click="go('examples-tabs')">examples-tabs</a>
+        <a ng-click="go('examples-toastr')">examples-toastr</a>
+        <a ng-click="go('examples-tooltip')">examples-tooltip</a>
+        <a ng-click="go('examples-tree')">examples-tree</a>
+        <a ng-click="go('examples-validator')">examples-validator</a>
+    </div>
+    <div ui-view=""></div>
+    <script type="text/javascript" src="/scripts/dist/examples.page.js"></script>
+</body>
+
+</html>

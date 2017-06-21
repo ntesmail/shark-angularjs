@@ -1,0 +1,5 @@
+<div class="m-area">
+    <p ng-repeat="item in tooltipList track by $index">
+        <button class="btn btn-sm btn-info" name="tooltip{{item.id}}" sharktooltip template="item.template">{{item.btnText}}</button>
+    </p>
+</div>
