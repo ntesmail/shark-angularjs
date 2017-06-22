@@ -1,7 +1,6 @@
 angular.module('examples.angularjs')
-    .config(['$stateProvider', '$urlRouterProvider',
-        function ($stateProvider, $urlRouterProvider) {
-            $urlRouterProvider.otherwise('/examples-autocomplete');
+    .config(['$stateProvider',
+        function ($stateProvider) {
             //ui-router路由配置
             $stateProvider
                 .state({
