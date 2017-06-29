@@ -1,6 +1,6 @@
 {
   "name": "@ntesmail/shark-angularjs",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "description": "shark-angularjs组件库，基于shark-ui打造的angular组件库",
   "keywords": [
     "shark",
@@ -17,7 +17,7 @@
   "homepage": "http://shark.mail.netease.com/shark-angularjs/index.html",
   "dependencies": {
     "@ntesmail/shark-css": "^1.2.6",
-    "@ntesmail/shark-ui": "2.0.0",
+    "@ntesmail/shark-ui": "^2.0.2",
     "@uirouter/angularjs": "^1.0.4",
     "angular": "^1.6.4",
     "angular-sanitize": "^1.6.4",

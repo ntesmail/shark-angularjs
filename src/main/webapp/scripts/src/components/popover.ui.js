@@ -30,15 +30,15 @@ angular.module('shark-angularjs.ui')
                         defer.reject();
                     });
                 }
-                var popoverClose = (typeof attrs.close !== 'undefined' ? SharkConfig.getAttrValue($scope, attrs.close) : PopoverConfig.close);
                 var popoverDirection = (typeof attrs.direction !== 'undefined' ? SharkConfig.getAttrValue($scope, attrs.direction) : PopoverConfig.direction);
                 var popoverName = attrs.name;
                 defer.promise.then(function (tpl) {
                     popover = SharkUI.sharkPopover({
+                        event: 'click',
+                        bodyClickClose: true,
+                        originEventClose: true,
                         title: '',
                         content: tpl,
-                        event: 'click',
-                        close: popoverClose,
                         direction: popoverDirection,
                         reRenderOnShow: false,
                         onShow: function () {

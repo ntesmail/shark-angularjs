@@ -21,6 +21,9 @@ exec('npm run build', function (err, stdout, stderr) {
             if (item.indexOf('shark') > -1) {
                 fse.move(path.join(publishDir, item), path.join(publishDir, publishFile));
             }
+            else {
+                fse.remove(path.join(publishDir, item));
+            }
         });
     }
 });

@@ -41,7 +41,6 @@ angular.module('shark-angularjs.ui')
             gopage: false
         };
         baseConfig[COMPONENTS.popover] = {
-            close: 'bodyclick',
             direction: 'right'
         };
         baseConfig[COMPONENTS.selecter] = {

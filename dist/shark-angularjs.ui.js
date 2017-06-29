@@ -81,7 +81,7 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
 	/******/__webpack_require__.p = "/";
 	/******/
 	/******/ // Load entry module and return exports
-	/******/return __webpack_require__(__webpack_require__.s = 0);
+	/******/return __webpack_require__(__webpack_require__.s = 1);
 	/******/
 })(
 /************************************************************************/
@@ -126,14 +126,6 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
 				}
 			};
 		}]);
-
-		/***/
-	},
-
-	/***/0:
-	/***/function _(module, exports, __webpack_require__) {
-
-		module.exports = __webpack_require__("v7ON");
 
 		/***/
 	},
@@ -439,6 +431,14 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
 				}
 			};
 		}]);
+
+		/***/
+	},
+
+	/***/1:
+	/***/function _(module, exports, __webpack_require__) {
+
+		module.exports = __webpack_require__("v7ON");
 
 		/***/
 	},
@@ -10921,15 +10921,15 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
 							defer.reject();
 						});
 					}
-					var popoverClose = typeof attrs.close !== 'undefined' ? SharkConfig.getAttrValue($scope, attrs.close) : PopoverConfig.close;
 					var popoverDirection = typeof attrs.direction !== 'undefined' ? SharkConfig.getAttrValue($scope, attrs.direction) : PopoverConfig.direction;
 					var popoverName = attrs.name;
 					defer.promise.then(function (tpl) {
 						popover = __WEBPACK_IMPORTED_MODULE_0__ntesmail_shark_ui__["a" /* SharkUI */].sharkPopover({
+							event: 'click',
+							bodyClickClose: true,
+							originEventClose: true,
 							title: '',
 							content: tpl,
-							event: 'click',
-							close: popoverClose,
 							direction: popoverDirection,
 							reRenderOnShow: false,
 							onShow: function onShow() {
@@ -15608,7 +15608,6 @@ var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbo
 				gopage: false
 			};
 			baseConfig[__WEBPACK_IMPORTED_MODULE_0__const__["a" /* COMPONENTS */].popover] = {
-				close: 'bodyclick',
 				direction: 'right'
 			};
 			baseConfig[__WEBPACK_IMPORTED_MODULE_0__const__["a" /* COMPONENTS */].selecter] = {
