@@ -19,6 +19,7 @@ angular.module('shark-angularjs.ui')
                     }
                 }
                 // 回调函数
+                var pageWillChangedCb = SharkConfig.getAttrValue($scope, attrs.onPageWillChange);
                 var pageChangedCb = SharkConfig.getAttrValue($scope, attrs.onPageChanged);
                 // 语言
                 var hl = (typeof attrs.hl !== 'undefined' ? SharkConfig.getAttrValue($scope, attrs.hl) : PagerConfig.hl);
@@ -37,6 +38,11 @@ angular.module('shark-angularjs.ui')
                     segmentSize: segmentSize,
                     startFrom: startFrom,
                     gopage: gopage,
+                    onPageWillChange: function () {
+                        if (typeof pageWillChangedCb === 'function') {
+                            return pageWillChangedCb.apply(pager, arguments);
+                        }
+                    },
                     onPageChanged: function () {
                         if (typeof pageChangedCb === 'function') {
                             pageChangedCb.apply(pager, arguments);

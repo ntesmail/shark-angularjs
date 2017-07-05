@@ -8,8 +8,14 @@ angular.module('examples.angularjs')
             gopage: 'go'
         };
         $scope.pagination = {
-            page: 5,
+            page: 1,
             totalPage: 10
+        };
+        $scope.pageWillChange = function (page) {
+            if(page === 5){
+                alert('禁止切换到第5页');
+                return false;
+            }
         };
         $scope.pageChanged = function (page) {
             console.log($scope.pagination.page);
