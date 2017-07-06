@@ -1,5 +1,5 @@
 <div ng-controller="DemoTabsCtrl">
-    <sharktabs name="tabs" tabs="tabs" active="active" on-tab-switch="tabSwitch"></sharktabs>
+    <sharktabs name="tabs" tabs="tabs" active="active" on-tab-switched="tabSwitched"></sharktabs>
 </div>
 <script type="text/javascript">
     angular.module('demoApp')
@@ -17,7 +17,7 @@
                 title: '市场组',
                 templateUrl: '/shark-angularjs/examples/templates/tabs-4.html'
             }];
-            $scope.tabSwitch = function (index) {
+            $scope.tabSwitched = function (index) {
                 console.log('tab切换到：' + index);
             };
             $scope.active = 1;
@@ -28,9 +28,6 @@
             $scope.openDialog = function (size) {
                 alert('点击了我');
             };
-            $timeout(function () {
-                $scope.active = 2;
-            }, 2000);
         }]);
 
 </script>
