@@ -45,6 +45,7 @@ angular.module('shark-angularjs.ui')
                 $controller(options.controller, locals);
                 //编译弹窗的html
                 $compile(modal.component)(locals.$scope);
+                defer.promise.modal = locals.$scope;
                 //打开弹窗
                 modal.show();
             }

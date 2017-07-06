@@ -15,6 +15,7 @@ angular.module('examples.angularjs')
                     }
                 }
             });
+            console.log(modalInstance);
             modalInstance.then(function (res) {
                 console.log('close', res);
                 $scope.content = res.content;
