@@ -23,7 +23,8 @@ angular.module('shark-angularjs.ui')
                     }
                 }
                 // 回调函数
-                var onTabSwitch = SharkConfig.getAttrValue($scope, attrs.onTabSwitch);
+                var tabWillSwitchCb = SharkConfig.getAttrValue($scope, attrs.onTabWillSwitch);
+                var tabSwitchedCb = SharkConfig.getAttrValue($scope, attrs.onTabSwitched);
                 var tabsData = SharkConfig.getAttrValue($scope, attrs.tabs);
                 // 如果定义了name属性，把pager组件赋给$scope
                 var tabsName = attrs.name;
@@ -53,14 +54,19 @@ angular.module('shark-angularjs.ui')
                     // // 初始化tabs组件
                     tabs = SharkUI.sharkTabs({
                         tabs: tabsData,
-                        onTabSwitch: function (index) {
+                        onTabWillSwitch: function (index) {
+                            if (typeof tabWillSwitchCb === 'function') {
+                                return tabWillSwitchCb.apply(tabs, arguments);
+                            }
+                        },
+                        onTabSwitched: function (index) {
                             try {
                                 $parse(attrs.active + '=value')($scope, { value: index });
                             } catch (e) {
                                 console.log(e);
                             }
-                            if (typeof onTabSwitch === 'function') {
-                                onTabSwitch.apply(tabs, arguments);
+                            if (typeof tabSwitchedCb === 'function') {
+                                tabSwitchedCb.apply(tabs, arguments);
                             }
                             if (!$scope.$$phase) {
                                 $scope.$apply();
